@@ -28,6 +28,7 @@ class RewardConfig:
     enable_shared_balance_reward: bool = False
     enable_deal_balance_penalty: bool = False
     enable_early_deal_penalty: bool = False
+    enable_low_utility_deal_penalty: bool = False
 
     # ---- Shaping 数值 ----
     format_bonus: float = 1.0           # 每轮格式合规 +1
@@ -51,6 +52,10 @@ class RewardConfig:
     deal_balance_gap_penalty: float = -40.0
     early_deal_min_rounds: int = 2
     early_deal_penalty: float = -4.0
+    seller_min_deal_util: float = 0.30
+    seller_low_util_deal_penalty: float = -25.0
+    buyer_min_deal_util: float = 0.25
+    buyer_low_util_deal_penalty: float = -20.0
 
     # ---- 零谈判空间的防方差爆炸 ----
     zone_floor: float = 1.0             # 分母最小值

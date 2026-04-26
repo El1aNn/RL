@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "created_at": "2026-04-26T18:41:07Z",
+    "base_model": "/root/autodl-tmp/models/merged_think",
+    "scenarios": "/root/autodl-tmp/Final_project/grpo/data/val_grpo_no_think.jsonl",
+    "start_index": 0,
+    "num_scenarios": 15,
+    "checkpoint_tag": "step_40",
+    "generation": {
+      "max_new_tokens": 96,
+      "max_prompt_length": 1536,
+      "temperature_buyer": 0.7,
+      "temperature_seller": 0.7,
+      "top_p": 0.9,
+      "seed": 42
+    },
+    "adapters": {
+      "v1": {
+        "buyer": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_from_s12_best_100/step_40/buyer",
+        "seller": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_from_s12_best_100/step_40/seller"
+      },
+      "v2": {
+        "buyer": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_v2_from_s12_best_100/step_40/buyer",
+        "seller": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_v2_from_s12_best_100/step_40/seller"
+      },
+      "v3": {
+        "buyer": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_v3_from_s12_best_100/step_40/buyer",
+        "seller": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_v3_from_s12_best_100/step_40/seller"
+      }
+    }
+  },
+  "versions": {
+    "v1": {
+      "output": "/root/autodl-tmp/Final_project/logs/rollout_v123_15/v1_rollouts_15_step_40.json",
+      "summary": {
+        "n": 15,
+        "outcomes": {
+          "violation_seller": 3,
+          "deal": 9,
+          "walkaway": 2,
+          "violation_buyer": 1
+        },
+        "deal_rate": 0.6,
+        "violation_buyer_rate": 0.06666666666666667,
+        "violation_seller_rate": 0.2,
+        "walkaway_rate": 0.13333333333333333,
+        "format_error_rate": 0.0,
+        "avg_buyer_reward": 0.43537452154983497,
+        "avg_seller_reward": 9.104625478450163,
+        "avg_rounds": 3.9
+      }
+    },
+    "v2": {
+      "output": "/root/autodl-tmp/Final_project/logs/rollout_v123_15/v2_rollouts_15_step_40.json",
+      "summary": {
+        "n": 15,
+        "outcomes": {
+          "deal": 8,
+          "violation_buyer": 2,
+          "walkaway": 2,
+          "violation_seller": 3
+        },
+        "deal_rate": 0.5333333333333333,
+        "violation_buyer_rate": 0.13333333333333333,
+        "violation_seller_rate": 0.2,
+        "walkaway_rate": 0.13333333333333333,
+        "format_error_rate": 0.0,
+        "avg_buyer_reward": 1.4129162327665328,
+        "avg_seller_reward": -9.219582899433199,
+        "avg_rounds": 4.066666666666666
+      }
+    },
+    "v3": {
+      "output": "/root/autodl-tmp/Final_project/logs/rollout_v123_15/v3_rollouts_15_step_40.json",
+      "summary": {
+        "n": 15,
+        "outcomes": {
+          "deal": 12,
+          "violation_seller": 3
+        },
+        "deal_rate": 0.8,
+        "violation_buyer_rate": 0.0,
+        "violation_seller_rate": 0.2,
+        "walkaway_rate": 0.0,
+        "format_error_rate": 0.0,
+        "avg_buyer_reward": 26.472732753293748,
+        "avg_seller_reward": 17.340600580039588,
+        "avg_rounds": 3.966666666666667
+      }
+    }
+  }
+}

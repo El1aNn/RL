@@ -16,6 +16,9 @@ LEAK_PATTERNS_SELLER = [
     re.compile(r"我的?\s*最低\s*(成本|成交|价)"),
     re.compile(r"(最低价|最低售价|底价)\s*(了|啦|是|为|就是)?\s*\d*"),
     re.compile(r"\d+\s*(已经|就|是)?\s*(最低价|最低售价|底价)"),
+    re.compile(r"(不能|没法|无法)\s*再\s*(低|降|让)"),
+    re.compile(r"再\s*(低|降|让)\s*(就)?\s*(亏|赔)"),
+    re.compile(r"(最后|最终)\s*的?\s*(让步|价格|报价)"),
     re.compile(r"我的?\s*底价"),
     re.compile(r"我的?\s*底线"),
     re.compile(r"成本\s*(就是|是|为|价)\s*\d+"),   # 直接说成本数字
@@ -26,6 +29,9 @@ LEAK_PATTERNS_BUYER = [
     re.compile(r"我的?\s*预算\s*(上限|最高|顶)"),
     re.compile(r"(最高预算|预算上限|最高出价|最多出)\s*(是|为|就)?\s*\d*"),
     re.compile(r"\d+\s*(是|就是|已经是)?\s*(最高预算|预算上限|最高出价)"),
+    re.compile(r"预算\s*(真的|确实|实在)?\s*(有限|就这么多|只有这么多)"),
+    re.compile(r"(不能|没法|无法)\s*再\s*(加|涨|出了?)"),
+    re.compile(r"(最多|顶多|只能)\s*(出|给)\s*\d+"),
     re.compile(r"我的?\s*底线"),
     re.compile(r"我的?\s*底价"),
 ]
@@ -215,6 +221,30 @@ def compute_early_deal_penalty(state: EnvState, role: str, cfg: RewardConfig) ->
     return 0.0
 
 
+def compute_low_utility_deal_penalty(state: EnvState, role: str, cfg: RewardConfig) -> float:
+    """Penalize accepting a deal that leaves this role too little surplus."""
+    if not cfg.enable_low_utility_deal_penalty or state.deal_price is None:
+        return 0.0
+    if getattr(state.outcome, "value", None) != "deal":
+        return 0.0
+
+    last = state.history[-1] if state.history else None
+    if last is None or last.role != role or last.parsed.action_type != "deal":
+        return 0.0
+
+    buyer_u, seller_u = _deal_utilities(state, cfg)
+    if role == "seller":
+        threshold = max(float(cfg.seller_min_deal_util), 1e-6)
+        if seller_u >= threshold:
+            return 0.0
+        return cfg.seller_low_util_deal_penalty * (threshold - seller_u) / threshold
+
+    threshold = max(float(cfg.buyer_min_deal_util), 1e-6)
+    if buyer_u >= threshold:
+        return 0.0
+    return cfg.buyer_low_util_deal_penalty * (threshold - buyer_u) / threshold
+
+
 def compute_shaping_for_role(
     state: EnvState, role: str, cfg: RewardConfig,
 ) -> Dict[str, float]:
@@ -230,4 +260,5 @@ def compute_shaping_for_role(
         "buyer_budget_pressure": compute_buyer_budget_pressure_penalty(state, role, cfg),
         "deal_balance": compute_deal_balance_penalty(state, role, cfg),
         "early_deal": compute_early_deal_penalty(state, role, cfg),
+        "low_utility_deal": compute_low_utility_deal_penalty(state, role, cfg),
     }

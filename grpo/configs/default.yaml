@@ -52,6 +52,7 @@ reward:
   enable_shared_balance_reward: false
   enable_deal_balance_penalty: false
   enable_early_deal_penalty: false
+  enable_low_utility_deal_penalty: false
   format_bonus: 1.0
   monotone_bonus: 2.0
   monotone_penalty: -3.0
@@ -67,6 +68,10 @@ reward:
   deal_balance_gap_penalty: -40.0
   early_deal_min_rounds: 2
   early_deal_penalty: -4.0
+  seller_min_deal_util: 0.30
+  seller_low_util_deal_penalty: -25.0
+  buyer_min_deal_util: 0.25
+  buyer_low_util_deal_penalty: -20.0
   zone_floor: 1.0
 
 train:

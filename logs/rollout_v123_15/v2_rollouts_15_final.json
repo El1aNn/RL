@@ -1,0 +1,1668 @@
+{
+  "metadata": {
+    "created_at": "2026-04-26T18:32:46Z",
+    "base_model": "/root/autodl-tmp/models/merged_think",
+    "scenarios": "/root/autodl-tmp/Final_project/grpo/data/val_grpo_no_think.jsonl",
+    "start_index": 0,
+    "num_scenarios": 15,
+    "checkpoint_tag": "final",
+    "generation": {
+      "max_new_tokens": 96,
+      "max_prompt_length": 1536,
+      "temperature_buyer": 0.7,
+      "temperature_seller": 0.7,
+      "top_p": 0.9,
+      "seed": 42
+    },
+    "adapters": {
+      "v1": {
+        "buyer": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_from_s12_best_100/final/buyer",
+        "seller": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_from_s12_best_100/final/seller"
+      },
+      "v2": {
+        "buyer": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_v2_from_s12_best_100/final/buyer",
+        "seller": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_v2_from_s12_best_100/final/seller"
+      },
+      "v3": {
+        "buyer": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_v3_from_s12_best_100/final/buyer",
+        "seller": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_v3_from_s12_best_100/final/seller"
+      }
+    }
+  },
+  "rollouts": [
+    {
+      "version": "v2",
+      "scenario_index": 0,
+      "scenario": {
+        "scenario_id": "val_00005",
+        "item_name": "二手索尼 A7C II 机身",
+        "item_description": "使用半年，快门次数 8000，成色 9 新",
+        "buyer_budget": 10020.0,
+        "seller_cost": 9314.0,
+        "market_ref_price": 11392.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：10400] 你这价连市场参考价都达不到，我最多给你这个价，合适就拍。",
+          "action_type": "offer",
+          "price": 10400.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "【第0轮-我】[报价：10020] 我预算有限，最多只能出这么多，合适我马上拍。",
+          "action_type": "offer",
+          "price": 10020.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：10380] 你这价我亏太多了，最多给你让到10380，再低真的亏。",
+          "action_type": "offer",
+          "price": 10380.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "【第1轮-我】[报价：10020] 我最多再加30，10020，你同意我现在就下单。",
+          "action_type": "offer",
+          "price": 10020.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：10320] 你再加点，10320，真的不能再低了，刚才还有人问呢。",
+          "action_type": "offer",
+          "price": 10320.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "【第2轮-我】[报价：10020] 我真的加不动了，你不同意就算了。",
+          "action_type": "offer",
+          "price": 10020.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "<walkaway>",
+          "action_type": "walkaway",
+          "price": null,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "walkaway",
+        "deal_price": null,
+        "terminated_reason": "seller_walkaway",
+        "buyer_reward": -43.9,
+        "seller_reward": -43.2,
+        "raw_buyer_reward": -43.9,
+        "raw_seller_reward": -43.2,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": -30.0,
+            "raw_terminal": -30.0,
+            "format_bonus": 3.0,
+            "monotone": 4.0,
+            "round_cost": -0.8999999999999999,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": -30.0,
+            "raw_terminal": -30.0,
+            "format_bonus": 4.0,
+            "monotone": 4.0,
+            "round_cost": -1.2,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 3.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 1,
+      "scenario": {
+        "scenario_id": "val_00151",
+        "item_name": "二手富士 X-T5 机身",
+        "item_description": "银色，使用一年，有正常使用痕迹，附送 UV 镜",
+        "buyer_budget": 9580.0,
+        "seller_cost": 7014.0,
+        "market_ref_price": 10156.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：7999] 你这价比我预期的低不少，我最多给你这个价，别再砍了。",
+          "action_type": "offer",
+          "price": 7999.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "[报价：7780] 我刚看了下别家同成色的报价，差不多就是这个数，我再加点。",
+          "action_type": "offer",
+          "price": 7780.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：7999] 我最多再给你降20，刚才还有个买家出7980我都没答应。",
+          "action_type": "offer",
+          "price": 7999.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "[报价：7780] 我也再加点，7780，你要是觉得合适咱们就成交。",
+          "action_type": "offer",
+          "price": 7780.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：7970] 我最多再给你让30，7970，低于这个我宁愿留着自己用。",
+          "action_type": "offer",
+          "price": 7970.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "[报价：7780] 我再加点，7780，真的是极限了，我这边真的没多余的钱了。",
+          "action_type": "offer",
+          "price": 7780.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "<deal>7780</deal>",
+          "action_type": "deal",
+          "price": 7780.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "deal",
+        "deal_price": 7780.0,
+        "terminated_reason": "seller_deal",
+        "buyer_reward": 76.2480904130943,
+        "seller_reward": 36.65190958690569,
+        "raw_buyer_reward": 76.2480904130943,
+        "raw_seller_reward": 36.65190958690569,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": 70.14809041309431,
+            "raw_terminal": 70.14809041309431,
+            "format_bonus": 3.0,
+            "monotone": 4.0,
+            "round_cost": -0.8999999999999999,
+            "leak_penalty": -0.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": 29.85190958690569,
+            "raw_terminal": 29.85190958690569,
+            "format_bonus": 4.0,
+            "monotone": 4.0,
+            "round_cost": -1.2,
+            "leak_penalty": -0.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 3.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 2,
+      "scenario": {
+        "scenario_id": "val_00267",
+        "item_name": "二手 ThinkPad X1 Carbon Gen11",
+        "item_description": "i5-1345U，16GB+256GB，使用一年，键盘有正常磨损",
+        "buyer_budget": 5661.0,
+        "seller_cost": 5341.0,
+        "market_ref_price": 7236.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：5950] 我这套机子外观几乎没有划痕，电池健康还有92%，给你这个价已经是亏着出了。",
+          "action_type": "offer",
+          "price": 5950.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "[报价：5661] 我就是刚毕业的上班族，买来办公用，预算实在紧，这个价我能马上拍。",
+          "action_type": "offer",
+          "price": 5661.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：5900] 你这价我连成本都收不回，最多给你让到5900，真的没赚头。",
+          "action_type": "offer",
+          "price": 5900.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "[报价：5661] 我再加点，5661，这是我能出的最高价了，你同意我现在就拍。",
+          "action_type": "offer",
+          "price": 5661.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：5820] 我再降30，5820，真的不能再少了，你再加点咱们就成交。",
+          "action_type": "offer",
+          "price": 5820.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "[报价：5661] 我真加不动了，你要是同意我现在就付款，不同意就算了。",
+          "action_type": "offer",
+          "price": 5661.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "<deal>5661</deal>",
+          "action_type": "deal",
+          "price": 5661.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "deal",
+        "deal_price": 5661.0,
+        "terminated_reason": "seller_deal",
+        "buyer_reward": 6.1,
+        "seller_reward": 106.8,
+        "raw_buyer_reward": 6.1,
+        "raw_seller_reward": 106.8,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": 0.0,
+            "raw_terminal": 0.0,
+            "format_bonus": 3.0,
+            "monotone": 4.0,
+            "round_cost": -0.8999999999999999,
+            "leak_penalty": -0.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": 100.0,
+            "raw_terminal": 100.0,
+            "format_bonus": 4.0,
+            "monotone": 4.0,
+            "round_cost": -1.2,
+            "leak_penalty": -0.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 3.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 3,
+      "scenario": {
+        "scenario_id": "val_00226",
+        "item_name": "二手 Sony WH-1000XM5",
+        "item_description": "黑色，使用四个月，降噪顶级，带收纳盒",
+        "buyer_budget": 1370.0,
+        "seller_cost": 1296.0,
+        "market_ref_price": 2035.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：1599.0] 你这价连翻新款都拿不到，我最多给你1599，已经很有诚意了。",
+          "action_type": "offer",
+          "price": 1599.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "[报价：1370.0] 我预算确实有限，最多就1370，合适我现在就能拍。",
+          "action_type": "offer",
+          "price": 1370.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：1520.0] 你这价我亏太多了，最多再让50，1520，再低真的没法谈。",
+          "action_type": "offer",
+          "price": 1520.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "[报价：1370.0] 我再加20，1370，这是我目前能出的最高价了。",
+          "action_type": "offer",
+          "price": 1370.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：1510.0] 我再让10，1510，这真的是我能出的最低价了，你再想想。",
+          "action_type": "offer",
+          "price": 1510.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "[报价：1370.0] 我再加5，1370，真的拿不出更多了。",
+          "action_type": "offer",
+          "price": 1370.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "<deal>1370.0</deal>",
+          "action_type": "deal",
+          "price": 1370.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "deal",
+        "deal_price": 1370.0,
+        "terminated_reason": "seller_deal",
+        "buyer_reward": -13.9,
+        "seller_reward": 86.8,
+        "raw_buyer_reward": -13.9,
+        "raw_seller_reward": 86.8,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": 0.0,
+            "raw_terminal": 0.0,
+            "format_bonus": 3.0,
+            "monotone": 4.0,
+            "round_cost": -0.8999999999999999,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": 100.0,
+            "raw_terminal": 100.0,
+            "format_bonus": 4.0,
+            "monotone": 4.0,
+            "round_cost": -1.2,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 3.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 4,
+      "scenario": {
+        "scenario_id": "val_00051",
+        "item_name": "二手富士 X-T5 机身",
+        "item_description": "银色，使用一年，有正常使用痕迹，附送 UV 镜",
+        "buyer_budget": 8669.0,
+        "seller_cost": 7608.0,
+        "market_ref_price": 9262.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：8000] 你这价真的太高了，我机子保养得特别好，最多给你这个价，不行我就出给别人了。",
+          "action_type": "offer",
+          "price": 8000.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "【第0轮-我】[报价：8000] 我也是诚心买，你这价我实在接受不了，最多出这么多，合适我现在就拍。",
+          "action_type": "offer",
+          "price": 8000.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：7900] 我给你再让点，7900，你要是觉得合适咱们就成交，不合适我就再等等别的买家。",
+          "action_type": "offer",
+          "price": 7900.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "【第1轮-我】[报价：7900] 我再加点，7900，我平时就爱拍点风景，预算真的不多。",
+          "action_type": "offer",
+          "price": 7900.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：7920] 行吧我再让20，7920，这真的是我能出的最低价了，你要是能接受咱们就走平台交易。",
+          "action_type": "offer",
+          "price": 7920.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "【第2轮-我】[报价：7920] 我就剩这么多预算了，7920，你同意我现在就拍。",
+          "action_type": "offer",
+          "price": 7920.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "<deal>7920</deal>",
+          "action_type": "deal",
+          "price": 7920.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "deal",
+        "deal_price": 7920.0,
+        "terminated_reason": "seller_deal",
+        "buyer_reward": 51.693779453345904,
+        "seller_reward": 11.206220546654102,
+        "raw_buyer_reward": 51.693779453345904,
+        "raw_seller_reward": 11.206220546654102,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": 70.5937794533459,
+            "raw_terminal": 70.5937794533459,
+            "format_bonus": 3.0,
+            "monotone": -1.0,
+            "round_cost": -0.8999999999999999,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": 29.4062205466541,
+            "raw_terminal": 29.4062205466541,
+            "format_bonus": 4.0,
+            "monotone": -1.0,
+            "round_cost": -1.2,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 3.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 5,
+      "scenario": {
+        "scenario_id": "val_00249",
+        "item_name": "二手 Sony WH-1000XM5",
+        "item_description": "银色，使用半年，头梁有轻微使用痕迹",
+        "buyer_budget": 1528.0,
+        "seller_cost": 1325.0,
+        "market_ref_price": 1820.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：1430] 你这价比我预期的高不少，我最多给到1430，合适的话咱们现在就拍。",
+          "action_type": "offer",
+          "price": 1430.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "【第0轮-我】[报价：1430] 我也确实预算有限，最多再加10块，1430能出我现在就付款。",
+          "action_type": "offer",
+          "price": 1430.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "<deal>1430</deal>",
+          "action_type": "deal",
+          "price": 1430.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "deal",
+        "deal_price": 1430.0,
+        "terminated_reason": "seller_deal",
+        "buyer_reward": 28.975862068965515,
+        "seller_reward": 53.12413793103448,
+        "raw_buyer_reward": 28.975862068965515,
+        "raw_seller_reward": 53.12413793103448,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": 48.275862068965516,
+            "raw_terminal": 48.275862068965516,
+            "format_bonus": 1.0,
+            "monotone": 0.0,
+            "round_cost": -0.3,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": 51.724137931034484,
+            "raw_terminal": 51.724137931034484,
+            "format_bonus": 2.0,
+            "monotone": 0.0,
+            "round_cost": -0.6,
+            "leak_penalty": -0.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 1.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 6,
+      "scenario": {
+        "scenario_id": "val_00246",
+        "item_name": "二手 LV Neverfull MM 手袋",
+        "item_description": "棋盘格款，使用半年，附购买小票和防尘袋",
+        "buyer_budget": 6943.0,
+        "seller_cost": 6005.0,
+        "market_ref_price": 7763.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：6600] 看你确实喜欢这款包，我直接给你让到6600，这个价已经很有诚意了。",
+          "action_type": "offer",
+          "price": 6600.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "【第0轮-我】[报价：6580] 我最多出6580，这已经是我目前能拿出来的全部预算了，再多就超我预算了。",
+          "action_type": "offer",
+          "price": 6580.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：6590] 我再给你降10块，6590，这真的是我能接受的最低价了，你再考虑考虑。",
+          "action_type": "offer",
+          "price": 6590.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "【第1轮-我】[报价：6580] 我再加10块，6580，你要是同意我现在就拍。",
+          "action_type": "offer",
+          "price": 6580.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "<deal>6580</deal>",
+          "action_type": "deal",
+          "price": 6580.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "deal",
+        "deal_price": 6580.0,
+        "terminated_reason": "seller_deal",
+        "buyer_reward": 22.09936034115138,
+        "seller_reward": 45.40063965884862,
+        "raw_buyer_reward": 22.09936034115138,
+        "raw_seller_reward": 45.40063965884862,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": 38.69936034115138,
+            "raw_terminal": 38.69936034115138,
+            "format_bonus": 2.0,
+            "monotone": 2.0,
+            "round_cost": -0.6,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": 61.30063965884862,
+            "raw_terminal": 61.30063965884862,
+            "format_bonus": 3.0,
+            "monotone": 2.0,
+            "round_cost": -0.8999999999999999,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 2.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 7,
+      "scenario": {
+        "scenario_id": "val_00258",
+        "item_name": "二手三星 Galaxy S24",
+        "item_description": "256GB，幻影黑，使用四个月，屏幕无划痕，全套配件",
+        "buyer_budget": 4529.0,
+        "seller_cost": 3296.0,
+        "market_ref_price": 4984.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：3980] 诚心要的兄弟我给你让到3980，比市场价低了快700了，刚才还有人出3900我都没卖。",
+          "action_type": "offer",
+          "price": 3980.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "【第0轮-我】[报价：3800] 我是学生党预算真的有限，最多出3800，你同意我现在就拍。",
+          "action_type": "offer",
+          "price": 3800.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：3920] 3800我亏太多了，我最多给你让到3920，这已经是我能给的最大诚意了。",
+          "action_type": "offer",
+          "price": 3920.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "【第1轮-我】[报价：3820] 我最多再加20，3820，我平时用手机很爱惜，你放心卖。",
+          "action_type": "offer",
+          "price": 3820.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：3900] 3820还是超我预期太多了，我再让一步3900，你再加点咱们就成交。",
+          "action_type": "offer",
+          "price": 3900.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "【第2轮-我】[报价：3830] 我再加10块，3830，我平时用手机挺小心的，你这个价我确实能接受。",
+          "action_type": "offer",
+          "price": 3830.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "<deal>3830</deal>",
+          "action_type": "deal",
+          "price": 3830.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "deal",
+        "deal_price": 3830.0,
+        "terminated_reason": "seller_deal",
+        "buyer_reward": 42.79099756690998,
+        "seller_reward": 50.10900243309002,
+        "raw_buyer_reward": 42.79099756690998,
+        "raw_seller_reward": 50.10900243309002,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": 56.69099756690998,
+            "raw_terminal": 56.69099756690998,
+            "format_bonus": 3.0,
+            "monotone": 4.0,
+            "round_cost": -0.8999999999999999,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": 43.30900243309002,
+            "raw_terminal": 43.30900243309002,
+            "format_bonus": 4.0,
+            "monotone": 4.0,
+            "round_cost": -1.2,
+            "leak_penalty": -0.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 3.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 8,
+      "scenario": {
+        "scenario_id": "val_00038",
+        "item_name": "二手 AirPods Pro 2",
+        "item_description": "Lightning 版，使用半年，耳塞已更换全新",
+        "buyer_budget": 996.0,
+        "seller_cost": 933.0,
+        "market_ref_price": 1375.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：980] 你这价真的太低了，我这机子连划痕都没有，最多给你980，合适就拍。",
+          "action_type": "offer",
+          "price": 980.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "【第0轮-我】[报价：960] 二手的还有折价，我最多给到960，合适我现在就拍。",
+          "action_type": "offer",
+          "price": 960.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：975] 960太低了我亏太多，975给你，比市场参考价还低10块。",
+          "action_type": "offer",
+          "price": 975.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "【第1轮-我】[报价：970] 我也确实想买，再给你加10块，970，你同意我马上付款。",
+          "action_type": "offer",
+          "price": 970.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：975] 我再降5块，975，真的不能再低了，我这机子成色这么好已经很值了。",
+          "action_type": "offer",
+          "price": 975.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "【第2轮-我】[报价：970] 我再加10块，970，这已经是我能出的最高价了。",
+          "action_type": "offer",
+          "price": 970.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "<deal>970</deal>",
+          "action_type": "deal",
+          "price": 970.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "deal",
+        "deal_price": 970.0,
+        "terminated_reason": "seller_deal",
+        "buyer_reward": 47.369841269841274,
+        "seller_reward": 45.53015873015873,
+        "raw_buyer_reward": 47.369841269841274,
+        "raw_seller_reward": 45.53015873015873,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": 41.26984126984127,
+            "raw_terminal": 41.26984126984127,
+            "format_bonus": 3.0,
+            "monotone": 4.0,
+            "round_cost": -0.8999999999999999,
+            "leak_penalty": -0.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": 58.73015873015873,
+            "raw_terminal": 58.73015873015873,
+            "format_bonus": 4.0,
+            "monotone": 4.0,
+            "round_cost": -1.2,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 3.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 9,
+      "scenario": {
+        "scenario_id": "val_00029",
+        "item_name": "二手 Fender Player Stratocaster 电吉他",
+        "item_description": "白色，使用一年，换过拾音器，手感顺滑",
+        "buyer_budget": 3054.0,
+        "seller_cost": 2739.0,
+        "market_ref_price": 4114.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：3500] 你这价砍得太狠了，我收来都是给客户让的，最多给你到这个数。",
+          "action_type": "offer",
+          "price": 3500.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "[报价：3054] 我预算真的有限，再给你加26，这已经是我能出的最高价了。",
+          "action_type": "offer",
+          "price": 3054.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：3579] 我这琴保养得特别好，拾音器换过，再给你让10块，已经很有诚意了。",
+          "action_type": "offer",
+          "price": 3579.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "[报价：3054] 我最多再加5块，真的拿不出更多了，不行我就去看别的货了。",
+          "action_type": "offer",
+          "price": 3054.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：3500] 你再加点，我之前有个买家出3450我都没卖，这个价已经亏很多了。",
+          "action_type": "offer",
+          "price": 3500.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "[报价：3054] 我真的凑不出更多了，你要是觉得合适咱们就成交，不合适我就走了。",
+          "action_type": "offer",
+          "price": 3054.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "<deal>3054</deal>",
+          "action_type": "deal",
+          "price": 3054.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "deal",
+        "deal_price": 3054.0,
+        "terminated_reason": "seller_deal",
+        "buyer_reward": -13.9,
+        "seller_reward": 101.8,
+        "raw_buyer_reward": -13.9,
+        "raw_seller_reward": 101.8,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": 0.0,
+            "raw_terminal": 0.0,
+            "format_bonus": 3.0,
+            "monotone": 4.0,
+            "round_cost": -0.8999999999999999,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": 100.0,
+            "raw_terminal": 100.0,
+            "format_bonus": 4.0,
+            "monotone": -1.0,
+            "round_cost": -1.2,
+            "leak_penalty": -0.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 3.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 10,
+      "scenario": {
+        "scenario_id": "val_00266",
+        "item_name": "二手雅马哈 P-125 电钢琴",
+        "item_description": "白色，使用两年，带琴罩，音色正常",
+        "buyer_budget": 2174.0,
+        "seller_cost": 2042.0,
+        "market_ref_price": 2405.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：1780] 看你确实是真心想买，我直接给你让180，这已经是我能给的最大优惠了。",
+          "action_type": "offer",
+          "price": 1780.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "【第1轮-我】[报价：1720] 我再加点，1720，我平时练琴也挺费琴的，诚心要才出这个价。",
+          "action_type": "offer",
+          "price": 1720.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：1820] 1720我连成本都收不回来，我再让10块，1820，真的没多少利润空间。",
+          "action_type": "offer",
+          "price": 1820.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "【第1轮-我】[报价：1770] 我再加30，1770，这已经是我能凑出来的全部预算了，你再考虑下。",
+          "action_type": "offer",
+          "price": 1770.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：1840] 我再给你让30，1840，这价真的没赚你钱，你要是觉得行咱们就走平台交易。",
+          "action_type": "offer",
+          "price": 1840.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "【第2轮-我】[报价：1810] 我再加10块，1810，真的不能再加了，你要是同意我现在就下单。",
+          "action_type": "offer",
+          "price": 1810.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "<deal>1810</deal>",
+          "action_type": "deal",
+          "price": 1810.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "violation_seller",
+        "deal_price": 1810.0,
+        "terminated_reason": "seller_deal_violation_seller",
+        "buyer_reward": -10.0,
+        "seller_reward": -100.0,
+        "raw_buyer_reward": -10.0,
+        "raw_seller_reward": -100.0,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": -10.0,
+            "raw_terminal": -10.0,
+            "shaping_disabled": 0.0
+          },
+          "seller": {
+            "terminal": -100.0,
+            "raw_terminal": -100.0,
+            "shaping_disabled": 0.0
+          }
+        },
+        "rounds": 3.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 11,
+      "scenario": {
+        "scenario_id": "val_00241",
+        "item_name": "二手 iPad Air 5",
+        "item_description": "64GB，星光色，使用半年，带妙控键盘",
+        "buyer_budget": 3382.0,
+        "seller_cost": 2633.0,
+        "market_ref_price": 4179.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：3180] 你这价真的太低了，我这机子成色几乎无瑕，最多给你让到3180，不能再低了。",
+          "action_type": "offer",
+          "price": 3180.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "【第0轮-我】[报价：3150] 我诚心要，最多给到3150，合适我今天就能下单付款。",
+          "action_type": "offer",
+          "price": 3150.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：3185] 你这价我连成本都收不回，我再让5块，3185，能接受咱们就成交。",
+          "action_type": "offer",
+          "price": 3185.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "【第1轮-我】[报价：3170] 我再加10块，3170，你要是同意我现在就付款。",
+          "action_type": "offer",
+          "price": 3170.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：3180] 我再让20，3180，这是我最后的报价，能接受你就拍。",
+          "action_type": "offer",
+          "price": 3180.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "【第2轮-我】[报价：3170] 我再加10块，3170，我真的拿不出更多了。",
+          "action_type": "offer",
+          "price": 3170.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "[报价：3180] 我最多再让10块，3180，你要是还不接受我就给别人了。",
+          "action_type": "offer",
+          "price": 3180.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "buyer",
+          "utterance": "【第3轮-我】[报价：3170] 我再加5块，3170，这真的是我目前能出的最高价了。",
+          "action_type": "offer",
+          "price": 3170.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 4,
+          "role": "seller",
+          "utterance": "<deal>3170</deal>",
+          "action_type": "deal",
+          "price": 3170.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "deal",
+        "deal_price": 3170.0,
+        "terminated_reason": "seller_deal",
+        "buyer_reward": 37.104405874499335,
+        "seller_reward": 36.19559412550066,
+        "raw_buyer_reward": 37.104405874499335,
+        "raw_seller_reward": 36.19559412550066,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": 28.30440587449933,
+            "raw_terminal": 28.30440587449933,
+            "format_bonus": 4.0,
+            "monotone": 6.0,
+            "round_cost": -1.2,
+            "leak_penalty": -0.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": 71.69559412550066,
+            "raw_terminal": 71.69559412550066,
+            "format_bonus": 5.0,
+            "monotone": 1.0,
+            "round_cost": -1.5,
+            "leak_penalty": -40.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 4.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 12,
+      "scenario": {
+        "scenario_id": "val_00274",
+        "item_name": "二手 AirPods Pro 2",
+        "item_description": "Lightning 版，使用半年，耳塞已更换全新",
+        "buyer_budget": 1333.0,
+        "seller_cost": 974.0,
+        "market_ref_price": 1343.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：1000] 你这价连翻新的都值，我这机子平时戴得特别爱惜，1000不能再少。",
+          "action_type": "offer",
+          "price": 1000.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "【第0轮-我】[报价：940] 我就是个人买家，预算真的有限，940能出我现在就拍。",
+          "action_type": "offer",
+          "price": 940.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：980] 940太低了，我最多给你让到980，再低我宁愿留着自己戴。",
+          "action_type": "offer",
+          "price": 980.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "【第1轮-我】[报价：940] 我最多再加10块，940，我平时买二手配件都精打细算的。",
+          "action_type": "offer",
+          "price": 940.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：1000] 940我连成本都回不来，我再让20，1000真的是地板价了。",
+          "action_type": "offer",
+          "price": 1000.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "【第2轮-我】[报价：950] 我再加10块，950，这已经是我能凑出来的上限了。",
+          "action_type": "offer",
+          "price": 950.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "[报价：1000] 我再给你让10块，1000，你要是能接受就拍，不能接受就算了。",
+          "action_type": "offer",
+          "price": 1000.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "buyer",
+          "utterance": "【第3轮-我】[报价：950] 我再凑10块，950，这真的是我目前能拿出来的全部预算了。",
+          "action_type": "offer",
+          "price": 950.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 4,
+          "role": "seller",
+          "utterance": "<deal>950</deal>",
+          "action_type": "deal",
+          "price": 950.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "violation_seller",
+        "deal_price": 950.0,
+        "terminated_reason": "seller_deal_violation_seller",
+        "buyer_reward": -10.0,
+        "seller_reward": -100.0,
+        "raw_buyer_reward": -10.0,
+        "raw_seller_reward": -100.0,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": -10.0,
+            "raw_terminal": -10.0,
+            "shaping_disabled": 0.0
+          },
+          "seller": {
+            "terminal": -100.0,
+            "raw_terminal": -100.0,
+            "shaping_disabled": 0.0
+          }
+        },
+        "rounds": 4.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 13,
+      "scenario": {
+        "scenario_id": "val_00256",
+        "item_name": "全套《哈利波特》中文精装版",
+        "item_description": "人民文学出版社 2018 版，7 册全，书页整洁无标注",
+        "buyer_budget": 164.0,
+        "seller_cost": 127.0,
+        "market_ref_price": 294.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：177.0] 你这价连市场价都不到，我最多给你让到177，不能再低了。",
+          "action_type": "offer",
+          "price": 177.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "【第0轮-我】[报价：162.0] 我预算真的有限，最多就这么多，你要是觉得合适咱们就成交。",
+          "action_type": "offer",
+          "price": 162.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：188.0] 你这价连我成本都够不上，我再让一步，188，这价真的没赚你钱。",
+          "action_type": "offer",
+          "price": 188.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "【第1轮-我】[报价：164.0] 我再凑点，164，这已经是我能拿出来的全部钱了。",
+          "action_type": "offer",
+          "price": 164.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：186.0] 164我亏太多了，真的拿不出，你再加点，186，真的不能再低了。",
+          "action_type": "offer",
+          "price": 186.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "【第2轮-我】[报价：164.0] 我真的加不动了，你要是同意我现在就拍。",
+          "action_type": "offer",
+          "price": 164.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "[报价：185.0] 164你连本都收不回，185，这是我最后一次让步了，要就拍。",
+          "action_type": "offer",
+          "price": 185.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "buyer",
+          "utterance": "【第3轮-我】[报价：164.0] 我真的加不动了，你要是不同意就算了。",
+          "action_type": "offer",
+          "price": 164.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 4,
+          "role": "seller",
+          "utterance": "<walkaway>",
+          "action_type": "walkaway",
+          "price": null,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "walkaway",
+        "deal_price": null,
+        "terminated_reason": "seller_walkaway",
+        "buyer_reward": -41.2,
+        "seller_reward": -65.5,
+        "raw_buyer_reward": -41.2,
+        "raw_seller_reward": -65.5,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": -30.0,
+            "raw_terminal": -30.0,
+            "format_bonus": 4.0,
+            "monotone": 6.0,
+            "round_cost": -1.2,
+            "leak_penalty": -20.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": -30.0,
+            "raw_terminal": -30.0,
+            "format_bonus": 5.0,
+            "monotone": 1.0,
+            "round_cost": -1.5,
+            "leak_penalty": -40.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 4.5
+      }
+    },
+    {
+      "version": "v2",
+      "scenario_index": 14,
+      "scenario": {
+        "scenario_id": "val_00183",
+        "item_name": "二手 iPhone 14 Pro",
+        "item_description": "256GB，深紫色，使用一年，有保护壳，无明显磨损",
+        "buyer_budget": 4012.0,
+        "seller_cost": 3545.0,
+        "market_ref_price": 5124.0,
+        "max_rounds": 10,
+        "metadata": {}
+      },
+      "dialogue": [
+        {
+          "round": 0,
+          "role": "seller",
+          "utterance": "[报价：4680] 你这价真的太低了，我机子平时都带壳用，保养得特别好，诚心要的话这个价出。",
+          "action_type": "offer",
+          "price": 4680.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 0,
+          "role": "buyer",
+          "utterance": "【第0轮-我】[报价：4012] 我就是个人买来日常用，预算真的不高，你这价我接受不了。",
+          "action_type": "offer",
+          "price": 4012.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "seller",
+          "utterance": "[报价：4590] 你这价我肯定卖不了，我最多给你降到4590，这已经比市场价低快一千了。",
+          "action_type": "offer",
+          "price": 4590.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 1,
+          "role": "buyer",
+          "utterance": "【第1轮-我】[报价：4012] 我预算卡得特别死，最多只能加40，4012，你再考虑考虑。",
+          "action_type": "offer",
+          "price": 4012.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "seller",
+          "utterance": "[报价：4480] 我再给你让20，4480，你要是觉得合适就拍，不合适我再等别的买家。",
+          "action_type": "offer",
+          "price": 4480.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 2,
+          "role": "buyer",
+          "utterance": "【第2轮-我】[报价：4012] 我再凑40，4012，你要是同意我现在就付款。",
+          "action_type": "offer",
+          "price": 4012.0,
+          "is_format_valid": true
+        },
+        {
+          "round": 3,
+          "role": "seller",
+          "utterance": "<deal>4012</deal>",
+          "action_type": "deal",
+          "price": 4012.0,
+          "is_format_valid": true
+        }
+      ],
+      "result": {
+        "outcome": "deal",
+        "deal_price": 4012.0,
+        "terminated_reason": "seller_deal",
+        "buyer_reward": 6.1,
+        "seller_reward": 106.8,
+        "raw_buyer_reward": 6.1,
+        "raw_seller_reward": 106.8,
+        "reward_breakdown": {
+          "buyer": {
+            "terminal": 0.0,
+            "raw_terminal": 0.0,
+            "format_bonus": 3.0,
+            "monotone": 4.0,
+            "round_cost": -0.8999999999999999,
+            "leak_penalty": -0.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          },
+          "seller": {
+            "terminal": 100.0,
+            "raw_terminal": 100.0,
+            "format_bonus": 4.0,
+            "monotone": 4.0,
+            "round_cost": -1.2,
+            "leak_penalty": -0.0,
+            "extreme_offer": -0.0,
+            "buyer_budget_pressure": 0.0,
+            "deal_balance": 0.0,
+            "early_deal": 0.0,
+            "low_utility_deal": 0.0
+          }
+        },
+        "rounds": 3.5
+      }
+    }
+  ],
+  "summary": {
+    "n": 15,
+    "outcomes": {
+      "walkaway": 2,
+      "deal": 11,
+      "violation_seller": 2
+    },
+    "deal_rate": 0.7333333333333333,
+    "violation_buyer_rate": 0.0,
+    "violation_seller_rate": 0.13333333333333333,
+    "walkaway_rate": 0.13333333333333333,
+    "format_error_rate": 0.0,
+    "avg_buyer_reward": 12.372155799187182,
+    "avg_seller_reward": 24.781177534146153,
+    "avg_rounds": 3.5
+  }
+}

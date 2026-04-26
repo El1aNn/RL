@@ -457,3 +457,89 @@ Monitoring criteria:
   - `eval/outcome_deal_rate >= 85%`
   - buyer and seller violation rates stay below roughly `6-7%`
   - qualitative rollouts avoid floor/ceiling leakage and history-label residue.
+
+## 2026-04-27: Stage3 Balanced V3 Reward Proposal And Script
+
+Context:
+- V1 had the best aggregate balance and legal-deal quality, but qualitative rollout showed:
+  - private floor/ceiling leakage,
+  - history-label residue,
+  - overly quick acceptance of one-sided prices.
+- V2 fixed some behavior issues and made dialogue longer, but degraded core metrics:
+  - lower legal deal rate,
+  - higher seller violation,
+  - weaker seller raw reward.
+- Therefore v3 should keep the v1 backbone and only add light guardrails.
+- A second review argued the first v3 draft was too conservative:
+  - `shared_balance_alpha = 0.35` may simply recreate v1's weak fairness signal.
+  - `deal_balance_gap_threshold = 0.35` only starts penalizing around a 67.5/32.5 split.
+  - `seller_min_deal_util = 0.25` does not catch the observed bad sample where seller utility was about 0.27.
+  - Fully disabling early-deal penalty risks returning to v1-style very fast deals.
+
+Decision:
+- Use v1-style shared balance as the main stage3 reward, but with a modestly higher Nash weight.
+- Keep v2 prompt/rollout cleanup and stronger leakage regexes.
+- Keep a mild early-deal penalty instead of v2's stronger version.
+- Use a middle fair-split threshold: stricter than the first v3 draft, much looser than the aggressive proposal.
+- Add low-utility deal protection for the role that emits `<deal>`.
+
+V3 reward definition:
+- Shared terminal reward remains:
+  - `shared = deal_scale * sqrt(buyer_util * seller_util)`
+  - `effective_terminal = (1 - alpha) * role_terminal + alpha * shared`
+- V3 defaults:
+  - `shared_balance_alpha = 0.45`
+  - `deal_balance_gap_threshold = 0.25`
+  - `deal_balance_gap_penalty = -25.0`
+  - `enable_early_deal_penalty = true`
+  - `early_deal_min_rounds = 2`
+  - `early_deal_penalty = -4.0`
+  - `enable_low_utility_deal_penalty = true`
+  - `seller_min_deal_util = 0.30`
+  - `seller_low_util_deal_penalty = -25.0`
+  - `buyer_min_deal_util = 0.25`
+  - `buyer_low_util_deal_penalty = -20.0`
+  - `leak_penalty = -25.0`
+  - `learning_rate = 7e-7`
+  - `beta_kl = 0.10`
+
+Low-utility deal penalty:
+- Applies only to the role that emits `<deal>`.
+- If seller accepts a legal deal with `seller_util < seller_min_deal_util`, penalty scales linearly down to `seller_low_util_deal_penalty`.
+- If buyer accepts a legal deal with `buyer_util < buyer_min_deal_util`, penalty scales linearly down to `buyer_low_util_deal_penalty`.
+- This targets the v2 failure mode where seller accepted too-low prices, without forcing all deals to be long.
+
+Changed:
+- `grpo/reward/config.py`
+  - Added low-utility deal penalty config.
+- `grpo/reward/shaping.py`
+  - Added soft leakage regexes such as `预算有限`, `不能再加`, `不能再低`, `最后的让步`.
+  - Added `compute_low_utility_deal_penalty`.
+- `grpo/configs/default.yaml`
+  - Added defaults for the new penalty, disabled by default.
+- `grpo/scripts/start_stage3_balanced_v3_from_s12_best_100.sh`
+  - Added clean 100-step v3 stage3 launcher from stage1_2 best buyer and stage2 best seller.
+
+Run command:
+
+```bash
+cd /root/autodl-tmp/Final_project
+bash grpo/scripts/start_stage3_balanced_v3_from_s12_best_100.sh
+```
+
+Expected behavior:
+- Compared with v1:
+  - similar or slightly lower legal-deal rate,
+  - fewer leakage phrases,
+  - less extreme one-sided accepted deals.
+- Compared with v2:
+  - shorter and more efficient conversations,
+  - lower seller violation,
+  - better raw seller reward.
+
+Monitoring criteria:
+- Prefer final or best checkpoint if:
+  - `eval/outcome_deal_rate >= 85%`
+  - seller violation is near or below v1 final (`~5-7%`)
+  - raw reward difference is near v1 final (`<= 10`)
+  - qualitative rollouts avoid explicit/soft budget-floor leakage.
