@@ -1,0 +1,119 @@
+# 场景谈判空间分层配置
+scenario_zone_profiles:
+  - id: "near_zero_space"
+    name: "近乎无谈判空间"
+    weight: 0.18
+    gap_ratio_range: [0.03, 0.08]
+
+  - id: "narrow_space"
+    name: "狭窄谈判空间"
+    weight: 0.27
+    gap_ratio_range: [0.08, 0.18]
+
+  - id: "balanced_space"
+    name: "中等谈判空间"
+    weight: 0.35
+    gap_ratio_range: [0.18, 0.40]
+
+  - id: "wide_space"
+    name: "宽松谈判空间"
+    weight: 0.20
+    gap_ratio_range: [0.40, 0.85]
+
+# SFT 对话模式配置
+dialogue_mode_profiles:
+  - id: "early_deal_anchor"
+    name: "快速成交-锚定后妥协"
+    weight: 0.14
+    outcome: "deal"
+    zone_profiles: ["balanced_space", "wide_space"]
+    round_range: [2, 3]
+    seller_strategy: "首轮明显高开，但在确认买家诚意后做一次较大让步。"
+    buyer_strategy: "首轮明显低开，第二轮快速抬价，表现出愿意成交。"
+    pace_instruction: "节奏偏快，前两轮就要形成接近成交的价格带。"
+    concession_instruction: "让步幅度可以先大后小，但不要每轮固定金额变化。"
+    extra_constraints: "在 2 到 3 轮内成交，语言简洁，避免长篇解释。"
+
+  - id: "patient_balanced_deal"
+    name: "均衡试探-耐心成交"
+    weight: 0.18
+    outcome: "deal"
+    zone_profiles: ["narrow_space", "balanced_space", "wide_space"]
+    round_range: [4, 6]
+    seller_strategy: "逐步释放让步空间，偶尔强调商品成色或其他买家。"
+    buyer_strategy: "持续压价但保持诚意，通过比较市场与预算慢慢抬价。"
+    pace_instruction: "节奏中等，前期试探，中后期逐步接近成交。"
+    concession_instruction: "让步应有快慢变化，至少出现一次小试探和一次明显调整。"
+    extra_constraints: "成交前要体现双方对价格区间的反复试探。"
+
+  - id: "hard_bargain_late_deal"
+    name: "强硬拉扯-后期成交"
+    weight: 0.12
+    outcome: "deal"
+    zone_profiles: ["narrow_space", "balanced_space"]
+    round_range: [6, 8]
+    seller_strategy: "坚持利润底线，前期让步小，后期才做关键调整。"
+    buyer_strategy: "多次试探最低价，前期加价克制，后期给出接近极限的报价。"
+    pace_instruction: "节奏偏慢，至少经历一段僵持后再成交。"
+    concession_instruction: "前期让步要碎片化，后期允许出现一次打破僵局的较大让步。"
+    extra_constraints: "要体现明显僵持感，但最终仍然成交。"
+
+  - id: "near_limit_deal"
+    name: "贴近底线-艰难成交"
+    weight: 0.10
+    outcome: "deal"
+    zone_profiles: ["near_zero_space", "narrow_space"]
+    round_range: [3, 6]
+    seller_strategy: "反复强调价格已经很低，谨慎防守底线。"
+    buyer_strategy: "预算紧张，多次强调只能再小幅加价。"
+    pace_instruction: "节奏紧张，围绕很小的价格空间反复博弈。"
+    concession_instruction: "让步幅度整体较小，但不要形成整齐的等差序列。"
+    extra_constraints: "最终成交价应非常接近一方底线，让人感觉差一点就谈崩。"
+
+  - id: "buyer_walkaway_with_zone"
+    name: "有空间但买家放弃"
+    weight: 0.12
+    outcome: "walkaway"
+    zone_profiles: ["balanced_space", "wide_space"]
+    round_range: [3, 5]
+    seller_strategy: "坚持较高心理价位，不愿快速靠近买家报价。"
+    buyer_strategy: "对价格敏感，除了价格外还会放大商品瑕疵或替代选择。"
+    pace_instruction: "中速推进，买家在认为性价比不够后主动退出。"
+    concession_instruction: "双方都有让步，但始终缺少真正的收敛。"
+    extra_constraints: "即使客观上存在谈判空间，也不要成交。"
+
+  - id: "seller_walkaway_protect_margin"
+    name: "有空间但卖家放弃"
+    weight: 0.10
+    outcome: "walkaway"
+    zone_profiles: ["balanced_space", "wide_space"]
+    round_range: [3, 6]
+    seller_strategy: "更在意维护利润与面子，不接受自己认为过低的价格。"
+    buyer_strategy: "愿意慢慢加价，但语气强硬，逼迫卖家继续降价。"
+    pace_instruction: "中速到慢速，卖家在后段因不愿继续让步而退出。"
+    concession_instruction: "卖家让步存在停顿，买家加价有保留，节奏不规则。"
+    extra_constraints: "要体现卖家是主动结束谈判的一方。"
+
+  - id: "timeout_deadlock"
+    name: "僵持超时-始终未成交"
+    weight: 0.12
+    outcome: "timeout"
+    zone_profiles: ["near_zero_space", "narrow_space", "balanced_space"]
+    round_range: [8, 10]
+    seller_strategy: "坚持高位心理锚点，多轮小幅挪动。"
+    buyer_strategy: "持续试探但始终不愿一次性给出成交价。"
+    pace_instruction: "节奏偏慢，围绕几次关键报价长时间拉扯。"
+    concession_instruction: "让步要断断续续，有时停顿，有时突然变化，但整体不收敛。"
+    extra_constraints: "用完轮数仍未出现 <deal> 或 <walkaway>。"
+
+  - id: "bluff_and_reversal"
+    name: "虚张声势-反转成交"
+    weight: 0.12
+    outcome: "deal"
+    zone_profiles: ["balanced_space", "wide_space"]
+    round_range: [5, 7]
+    seller_strategy: "前期强势，强调别人也在看货，后期为提高成交概率突然松动。"
+    buyer_strategy: "前期装作兴趣有限，后期在关键时刻快速接近成交价。"
+    pace_instruction: "先僵后松，最后 1 到 2 轮明显反转。"
+    concession_instruction: "至少有一次策略性虚张声势，以及一次非线性的较大让步。"
+    extra_constraints: "最终成交，但成交前要有明显的策略博弈感。"

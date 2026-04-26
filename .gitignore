@@ -1,0 +1,31 @@
+# Python / notebook cache
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local runtime metadata
+.autodl/
+logs/
+*.pid
+*.log
+*.logpath
+*.session
+
+# Experiment outputs and model artifacts
+checkpoints/
+models/
+runs/
+wandb/
+swanlab/
+outputs/
+
+# Secrets / local environment
+.env
+.env.*
+*.pem
+*.key
+*.token
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

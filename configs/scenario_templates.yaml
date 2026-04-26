@@ -1,0 +1,209 @@
+# 谈判场景商品模板
+# 每个类别包含：名称模板、描述模板、成本范围、市场参考价范围
+
+categories:
+  # ===== 电子产品 =====
+  - category: "手机"
+    items:
+      - name: "二手 iPhone 15"
+        descriptions:
+          - "128GB，白色，使用半年，屏幕有轻微划痕，电池健康度 92%"
+          - "256GB，黑色，使用三个月，几乎全新，带原装充电器"
+          - "128GB，蓝色，使用一年，整体成色 8 成新，功能完全正常"
+        cost_range: [3000, 4000]
+        market_price_range: [4000, 5500]
+
+      - name: "二手 iPhone 14 Pro"
+        descriptions:
+          - "256GB，深紫色，使用一年，有保护壳，无明显磨损"
+          - "128GB，金色，使用十个月，屏幕完美，电池健康度 89%"
+        cost_range: [3500, 4500]
+        market_price_range: [4500, 6000]
+
+      - name: "二手三星 Galaxy S24"
+        descriptions:
+          - "256GB，幻影黑，使用四个月，屏幕无划痕，全套配件"
+          - "128GB，奶油白，使用半年，有轻微使用痕迹"
+        cost_range: [2800, 3800]
+        market_price_range: [3800, 5000]
+
+      - name: "二手小米 14 Pro"
+        descriptions:
+          - "512GB，白色，使用两个月，几乎全新带发票"
+          - "256GB，黑色，使用半年，正常使用痕迹"
+        cost_range: [2000, 3000]
+        market_price_range: [3000, 4200]
+
+  - category: "笔记本电脑"
+    items:
+      - name: "二手 MacBook Pro 14 寸 M3"
+        descriptions:
+          - "16GB+512GB，深空灰，使用半年，有 AppleCare+，循环次数 50"
+          - "18GB+512GB，银色，使用三个月，几乎全新，带包装盒"
+        cost_range: [9000, 11000]
+        market_price_range: [11000, 14000]
+
+      - name: "二手 ThinkPad X1 Carbon Gen11"
+        descriptions:
+          - "i7-1365U，16GB+512GB，使用八个月，商务办公机，成色良好"
+          - "i5-1345U，16GB+256GB，使用一年，键盘有正常磨损"
+        cost_range: [4000, 5500]
+        market_price_range: [5500, 7500]
+
+      - name: "二手联想拯救者 Y9000P"
+        descriptions:
+          - "i9-13900HX+RTX4060，32GB，使用半年，游戏性能强劲"
+          - "i7-13700H+RTX4050，16GB，使用十个月，散热良好"
+        cost_range: [5000, 7000]
+        market_price_range: [7000, 9500]
+
+  - category: "平板电脑"
+    items:
+      - name: "二手 iPad Pro 12.9 M2"
+        descriptions:
+          - "256GB，WiFi 版，使用四个月，配 Apple Pencil 2"
+          - "128GB，WiFi+蜂窝版，使用一年，屏幕完美"
+        cost_range: [4500, 5500]
+        market_price_range: [5500, 7500]
+
+      - name: "二手 iPad Air 5"
+        descriptions:
+          - "64GB，星光色，使用半年，带妙控键盘"
+          - "256GB，紫色，使用三个月，几乎全新"
+        cost_range: [2500, 3500]
+        market_price_range: [3500, 4800]
+
+  - category: "耳机/音频"
+    items:
+      - name: "二手 AirPods Pro 2"
+        descriptions:
+          - "USB-C 版，使用三个月，降噪效果完美，带原装盒"
+          - "Lightning 版，使用半年，耳塞已更换全新"
+        cost_range: [800, 1100]
+        market_price_range: [1100, 1500]
+
+      - name: "二手 Sony WH-1000XM5"
+        descriptions:
+          - "黑色，使用四个月，降噪顶级，带收纳盒"
+          - "银色，使用半年，头梁有轻微使用痕迹"
+        cost_range: [1200, 1600]
+        market_price_range: [1600, 2200]
+
+  - category: "相机"
+    items:
+      - name: "二手索尼 A7C II 机身"
+        descriptions:
+          - "使用三个月，快门次数 2000，带原装电池两块"
+          - "使用半年，快门次数 8000，成色 9 新"
+        cost_range: [9000, 11000]
+        market_price_range: [11000, 13500]
+
+      - name: "二手富士 X-T5 机身"
+        descriptions:
+          - "黑色，使用四个月，快门次数 3000，功能完好"
+          - "银色，使用一年，有正常使用痕迹，附送 UV 镜"
+        cost_range: [7000, 9000]
+        market_price_range: [9000, 11500]
+
+  # ===== 生活用品 =====
+  - category: "家具"
+    items:
+      - name: "二手 Herman Miller Aeron 椅"
+        descriptions:
+          - "B 号，全功能版，使用两年，坐垫弹性良好"
+          - "C 号，Remastered 版，使用一年，头枕完好"
+        cost_range: [3000, 4500]
+        market_price_range: [4500, 6500]
+
+      - name: "二手实木书桌"
+        descriptions:
+          - "北美黑胡桃木，140x70cm，使用一年，桌面有轻微水渍"
+          - "白橡木，120x60cm，使用半年，保养良好"
+        cost_range: [800, 1500]
+        market_price_range: [1500, 2500]
+
+  - category: "家电"
+    items:
+      - name: "二手戴森 V15 吸尘器"
+        descriptions:
+          - "使用半年，吸力强劲，配件齐全，有激光探测功能"
+          - "使用一年，电池续航约 40 分钟，滤芯已更换"
+        cost_range: [1800, 2500]
+        market_price_range: [2500, 3500]
+
+      - name: "二手松下洗烘一体机"
+        descriptions:
+          - "10kg，使用一年半，洗涤和烘干功能正常，外观 8 成新"
+          - "8kg，使用一年，静音效果好，门密封圈完好"
+        cost_range: [1500, 2500]
+        market_price_range: [2500, 4000]
+
+  # ===== 运动/户外 =====
+  - category: "运动器材"
+    items:
+      - name: "二手 Specialized 公路自行车"
+        descriptions:
+          - "碳纤维车架，Shimano 105 套件，骑行 2000km，整车状态良好"
+          - "铝合金车架，Tiagra 套件，骑行 5000km，轮组已升级"
+        cost_range: [3000, 5000]
+        market_price_range: [5000, 8000]
+
+      - name: "二手 Garmin Fenix 7X 手表"
+        descriptions:
+          - "钛合金版，使用半年，表盘无划痕，GPS 精准"
+          - "不锈钢版，使用十个月，表带已更换新硅胶带"
+        cost_range: [2500, 3500]
+        market_price_range: [3500, 5000]
+
+  # ===== 乐器 =====
+  - category: "乐器"
+    items:
+      - name: "二手雅马哈 P-125 电钢琴"
+        descriptions:
+          - "黑色，使用一年，琴键手感正常，配原装琴架和踏板"
+          - "白色，使用两年，带琴罩，音色正常"
+        cost_range: [1500, 2200]
+        market_price_range: [2200, 3200]
+
+      - name: "二手 Fender Player Stratocaster 电吉他"
+        descriptions:
+          - "日落色，使用半年，品丝无磨损，音色出色"
+          - "白色，使用一年，换过拾音器，手感顺滑"
+        cost_range: [2500, 3500]
+        market_price_range: [3500, 5000]
+
+  # ===== 奢侈品/配件 =====
+  - category: "箱包"
+    items:
+      - name: "二手 LV Neverfull MM 手袋"
+        descriptions:
+          - "老花款，使用一年，五金件有轻微氧化，内衬干净"
+          - "棋盘格款，使用半年，附购买小票和防尘袋"
+        cost_range: [5000, 7000]
+        market_price_range: [7000, 9500]
+
+  - category: "手表"
+    items:
+      - name: "二手欧米茄海马 300 腕表"
+        descriptions:
+          - "蓝盘钢带，使用两年，走时精准，有划痕但不影响佩戴"
+          - "黑盘胶带，使用一年，成色 9 新，附全套盒单"
+        cost_range: [18000, 24000]
+        market_price_range: [24000, 32000]
+
+  # ===== 图书/收藏 =====
+  - category: "图书"
+    items:
+      - name: "全套《哈利波特》中文精装版"
+        descriptions:
+          - "人民文学出版社 2018 版，7 册全，书页整洁无标注"
+          - "人民文学出版社 2020 版，7 册全，有少许翻阅痕迹"
+        cost_range: [100, 180]
+        market_price_range: [180, 300]
+
+      - name: "二手 Kindle Oasis 3"
+        descriptions:
+          - "32GB，银色，使用一年，屏幕无残影，电池续航良好"
+          - "8GB，石墨色，使用两年，有保护壳"
+        cost_range: [600, 900]
+        market_price_range: [900, 1300]

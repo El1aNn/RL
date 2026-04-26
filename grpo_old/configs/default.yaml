@@ -1,0 +1,106 @@
+# GRPO 默认配置
+# 继承该文件后可以在 scripts 里通过 --override 覆盖字段
+
+model:
+  # SFT merge 后的 base，作为 buyer/seller LoRA 的共享 backbone
+  # 也作为 KL reference（disable_adapter 时即为此 base）
+  base_model_path: ./checkpoints/sft_base
+  dtype: bfloat16
+  max_model_len: 4096
+
+lora:
+  rank: 64
+  alpha: 128
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+# 初次训练时 adapter 为 None（新建）；继续训练时填 ckpt 路径
+adapter_init:
+  buyer: null
+  seller: null
+
+vllm:
+  max_lora_rank: 64
+  max_loras: 3
+  gpu_memory_utilization: 0.55
+  enforce_eager: false
+
+rollout:
+  group_size: 16
+  max_new_tokens: 128
+  temperature_active: 0.9
+  temperature_opponent: 0.7
+  top_p: 0.9
+  max_rounds: 10
+
+env:
+  format_error_budget: 2
+
+reward:
+  deal_scale: 100.0
+  violation_penalty: -100.0
+  walkaway_wrong: -30.0
+  walkaway_right: 5.0
+  timeout: -15.0
+  format_error: -50.0
+  enable_format_bonus: true
+  enable_monotone: true
+  enable_round_cost: true
+  enable_leak_penalty: true
+  format_bonus: 1.0
+  monotone_bonus: 2.0
+  monotone_penalty: -3.0
+  round_cost: -0.3
+  leak_penalty: -20.0
+  zone_floor: 1.0
+
+train:
+  scenarios_path: Final_project/data/scenarios_rl_5k/train.jsonl
+  val_path: Final_project/data/scenarios_rl_5k/val.jsonl
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 1
+  gradient_checkpointing: true
+  max_grad_norm: 1.0
+  weight_decay: 0.0
+  advantage_eps: 1.0e-4
+  clip_epsilon: 0.2
+  max_prompt_length: 1536
+  max_completion_length: 128
+
+# 阶段 1/2/3 的专属超参（通过 --stage 选择）
+stage1:
+  active_role: buyer
+  active_adapter: buyer
+  opponent_adapter: seller
+  learning_rate: 5.0e-6
+  beta_kl: 0.04
+  total_steps: 500
+  eval_every: 50
+  save_every: 100
+  output_dir: ./checkpoints/grpo/stage1
+
+stage2:
+  active_role: seller
+  active_adapter: seller
+  opponent_adapter: buyer
+  learning_rate: 5.0e-6
+  beta_kl: 0.04
+  total_steps: 500
+  eval_every: 50
+  save_every: 100
+  output_dir: ./checkpoints/grpo/stage2
+
+stage3:
+  active_role: alternating
+  active_adapter: buyer        # 起始 adapter；alternating 下每 step 交替切换
+  opponent_adapter: seller
+  learning_rate: 1.0e-6
+  beta_kl: 0.08
+  total_steps: 300
+  eval_every: 25
+  save_every: 100
+  output_dir: ./checkpoints/grpo/stage3
+
+seed: 42
+save_total_limit: 2
+logging_every: 10

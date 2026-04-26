@@ -1,0 +1,25 @@
+# RL scenario bargaining-zone distribution.
+#
+# This file is intentionally scenario-only. It is consumed by
+# `data/generate_scenarios.py` and does not require any API calls.
+
+scenario_zone_profiles:
+  - id: "near_zero_space"
+    name: "近乎无谈判空间"
+    weight: 0.25
+    gap_ratio_range: [0.03, 0.08]
+
+  - id: "narrow_space"
+    name: "狭窄谈判空间"
+    weight: 0.35
+    gap_ratio_range: [0.08, 0.18]
+
+  - id: "balanced_space"
+    name: "中等谈判空间"
+    weight: 0.25
+    gap_ratio_range: [0.18, 0.40]
+
+  - id: "wide_space"
+    name: "宽松谈判空间"
+    weight: 0.15
+    gap_ratio_range: [0.40, 0.85]
