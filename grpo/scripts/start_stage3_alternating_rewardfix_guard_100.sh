@@ -20,6 +20,9 @@ resolve_rewardfix_guard_buyer_adapter() {
 
   local candidate
   for candidate in \
+    "${repo_root}/checkpoints/grpo/stage1_2_buyer_vs_stage2_seller_100/best/buyer" \
+    "${repo_root}/checkpoints/grpo/stage1_2_buyer_vs_stage2_seller_100/final/buyer" \
+    "${repo_root}/checkpoints/grpo/stage1_2_buyer_vs_stage2_seller_100/step_100/buyer" \
     "${repo_root}/checkpoints/grpo/stage1_rewardfix_guard_100/best/buyer" \
     "${repo_root}/checkpoints/grpo/stage1_rewardfix_guard_100/final/buyer" \
     "${repo_root}/checkpoints/grpo/stage1_rewardfix_guard_100/step_100/buyer"; do
@@ -30,7 +33,7 @@ resolve_rewardfix_guard_buyer_adapter() {
   done
 
   echo "[stage3] cannot find rewardfix+guard stage1 buyer adapter." >&2
-  echo "[stage3] finish stage1_rewardfix_guard_100 first, or set STAGE1_BUYER_ADAPTER." >&2
+  echo "[stage3] finish stage1_2_buyer_vs_stage2_seller_100 or stage1_rewardfix_guard_100 first, or set STAGE1_BUYER_ADAPTER." >&2
   return 1
 }
 

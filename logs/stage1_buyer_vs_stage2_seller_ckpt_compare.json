@@ -1,0 +1,441 @@
+{
+  "base_model": "/root/autodl-tmp/models/merged_think",
+  "buyer_adapter": "/root/autodl-tmp/checkpoints/grpo/stage1_rewardfix_guard_100/best/buyer",
+  "seller_adapters": {
+    "init_seller": "/root/autodl-tmp/checkpoints/grpo/stage2_seller_rewardfix_guard_100/_init_seller",
+    "step50_seller": "/root/autodl-tmp/checkpoints/grpo/stage2_seller_rewardfix_guard_100/step_50/seller",
+    "best_seller": "/root/autodl-tmp/checkpoints/grpo/stage2_seller_rewardfix_guard_100/best/seller",
+    "step100_seller": "/root/autodl-tmp/checkpoints/grpo/stage2_seller_rewardfix_guard_100/step_100/seller",
+    "final_seller": "/root/autodl-tmp/checkpoints/grpo/stage2_seller_rewardfix_guard_100/final/seller"
+  },
+  "scenarios": "/root/autodl-tmp/Final_project/grpo/data/val_grpo_no_think.jsonl",
+  "n_scenarios": 16,
+  "group_size": 2,
+  "results": {
+    "init_seller": {
+      "n": 32,
+      "outcomes": {
+        "deal": 20,
+        "walkaway": 7,
+        "format_error": 5
+      },
+      "legal_deal_rate": 0.625,
+      "deal_including_violation_rate": 0.625,
+      "format_error_rate": 0.15625,
+      "walkaway_rate": 0.21875,
+      "violation_buyer_rate": 0.0,
+      "violation_seller_rate": 0.0,
+      "avg_buyer_reward": 13.196295763459776,
+      "avg_seller_reward": 39.52870423654022,
+      "avg_rounds": 5.96875,
+      "buyer_surplus_share_mean": 0.18979073221535642,
+      "buyer_surplus_share_min": 0.0,
+      "buyer_surplus_share_max": 1.0,
+      "seller_surplus_share_mean": 0.8102092677846435,
+      "deal_to_budget_mean": 0.9633394393807393,
+      "deal_to_market_mean": 0.8334014491367601
+    },
+    "step50_seller": {
+      "n": 32,
+      "outcomes": {
+        "deal": 31,
+        "walkaway": 1
+      },
+      "legal_deal_rate": 0.96875,
+      "deal_including_violation_rate": 0.96875,
+      "format_error_rate": 0.0,
+      "walkaway_rate": 0.03125,
+      "violation_buyer_rate": 0.0,
+      "violation_seller_rate": 0.0,
+      "avg_buyer_reward": 6.12749743852459,
+      "avg_seller_reward": 94.5100025614754,
+      "avg_rounds": 2.53125,
+      "buyer_surplus_share_mean": 0.04341287678476996,
+      "buyer_surplus_share_min": 0.0,
+      "buyer_surplus_share_max": 0.96875,
+      "seller_surplus_share_mean": 0.95658712321523,
+      "deal_to_budget_mean": 0.9963315353773043,
+      "deal_to_market_mean": 0.8328119969612211
+    },
+    "best_seller": {
+      "n": 32,
+      "outcomes": {
+        "violation_seller": 1,
+        "deal": 31
+      },
+      "legal_deal_rate": 0.96875,
+      "deal_including_violation_rate": 1.0,
+      "format_error_rate": 0.0,
+      "walkaway_rate": 0.0,
+      "violation_buyer_rate": 0.0,
+      "violation_seller_rate": 0.03125,
+      "avg_buyer_reward": 3.065625,
+      "avg_seller_reward": 96.39999999999999,
+      "avg_rounds": 2.5,
+      "buyer_surplus_share_mean": 0.0,
+      "buyer_surplus_share_min": 0.0,
+      "buyer_surplus_share_max": 0.0,
+      "seller_surplus_share_mean": 1.0,
+      "deal_to_budget_mean": 1.0,
+      "deal_to_market_mean": 0.8382706283319727
+    },
+    "step100_seller": {
+      "n": 32,
+      "outcomes": {
+        "deal": 31,
+        "format_error": 1
+      },
+      "legal_deal_rate": 0.96875,
+      "deal_including_violation_rate": 0.96875,
+      "format_error_rate": 0.03125,
+      "walkaway_rate": 0.0,
+      "violation_buyer_rate": 0.0,
+      "violation_seller_rate": 0.0,
+      "avg_buyer_reward": 23.93125,
+      "avg_seller_reward": 95.28125,
+      "avg_rounds": 5.796875,
+      "buyer_surplus_share_mean": 0.12903225806451613,
+      "buyer_surplus_share_min": 0.0,
+      "buyer_surplus_share_max": 1.0,
+      "seller_surplus_share_mean": 0.8709677419354839,
+      "deal_to_budget_mean": 0.987197033379805,
+      "deal_to_market_mean": 0.840765650358049
+    },
+    "final_seller": {
+      "n": 32,
+      "outcomes": {
+        "deal": 29,
+        "walkaway": 2,
+        "violation_seller": 1
+      },
+      "legal_deal_rate": 0.90625,
+      "deal_including_violation_rate": 0.9375,
+      "format_error_rate": 0.0,
+      "walkaway_rate": 0.0625,
+      "violation_buyer_rate": 0.0,
+      "violation_seller_rate": 0.03125,
+      "avg_buyer_reward": 24.509375,
+      "avg_seller_reward": 82.06875000000001,
+      "avg_rounds": 5.546875,
+      "buyer_surplus_share_mean": 0.1724137931034483,
+      "buyer_surplus_share_min": 0.0,
+      "buyer_surplus_share_max": 1.0,
+      "seller_surplus_share_mean": 0.8275862068965517,
+      "deal_to_budget_mean": 0.9804109434617919,
+      "deal_to_market_mean": 0.8244637931263543
+    }
+  },
+  "median_examples": {
+    "init_seller": {
+      "scenario_id": "val_00029",
+      "item_name": "二手 Fender Player Stratocaster 电吉他",
+      "buyer_budget": 3054.0,
+      "seller_cost": 2739.0,
+      "market_ref_price": 4114.0,
+      "deal_price": 3054.0,
+      "buyer_surplus_share": 0.0,
+      "buyer_reward": 11.5,
+      "seller_reward": 97.2,
+      "turns": [
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2780.0,
+          "utterance": "[报价：2780] 你这价太低了，我这琴挂过官方调音，拾音器都换了，这个价已经很有诚意了。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第0轮-我方】[报价：3054] 我是真心想买，就3054，再多我就去别家看了。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2799.0,
+          "utterance": "【第1轮-卖家】[报价：2799] 我最多给你让到2799，这已经是我能接受的最低价了，再低我不如留着自己用。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第1轮-买家】【第1轮-我方】[报价：3054] 我再给你加4块，真的拿不出更多了，你要是同意我现在就拍。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2810.0,
+          "utterance": "【第2轮-卖家】【第2轮-卖家】[报价：2810] 我再让5块，2810，你要是还觉得贵我就真的不卖了。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第2轮-买家】【第2轮-我方】【第2轮-我方】[报价：3054] 我再加4块，2810，你要是同意我现在就付款。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2820.0,
+          "utterance": "【第3轮-卖家】【第3轮-卖家】【第3轮-卖家】[报价：2820] 我再让10块，2820，这个价真的是亏着出了，你别再砍了。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第3轮-买家】【第3轮-买家】【第3轮-我方】【第3轮-我方】【第3轮-我方】[报价：3054] 我再加10块，2820，这真的是我能出的最高价了。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2820.0,
+          "utterance": "【第4轮-卖家】【第4轮-卖家】【第4轮-卖家】【第4轮-卖家】[报价：2820] 我再让20，2820，这是我最后一次让价，你同意我现在就发顺丰。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第4轮-买家】【第4轮-买家】【第4轮-买家】【第4轮-我方】【第4轮-我方】【第4轮-我方】【第4轮-我方】[报价：3054] 我再加10块，2820，真的不能再加了。"
+        },
+        {
+          "role": "seller",
+          "action": "deal",
+          "price": 3054.0,
+          "utterance": "<deal>3054</deal>"
+        }
+      ]
+    },
+    "step50_seller": {
+      "scenario_id": "val_00038",
+      "item_name": "二手 AirPods Pro 2",
+      "buyer_budget": 996.0,
+      "seller_cost": 933.0,
+      "market_ref_price": 1375.0,
+      "deal_price": 996.0,
+      "buyer_surplus_share": 0.0,
+      "buyer_reward": 3.4,
+      "seller_reward": 104.1,
+      "turns": [
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 933.0,
+          "utterance": "[报价：933.0] 我直接给你报实价，933，刚才还有个买家出920我都没卖，诚心要就这个价。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 996.0,
+          "utterance": "【第0轮-我方】[报价：996.0] 我再加点，996，我预算真的不高，多给你点零花钱。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 933.0,
+          "utterance": "【第1轮-卖家】[报价：933.0] 996我接受不了，再给你降2块，933，你要是接受不了就算了。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 996.0,
+          "utterance": "【第1轮-买家】【第1轮-我方】[报价：996.0] 我再给你加2块，996，这已经是我能出的最高价了。"
+        },
+        {
+          "role": "seller",
+          "action": "deal",
+          "price": 996.0,
+          "utterance": "<deal>996.0</deal>"
+        }
+      ]
+    },
+    "best_seller": {
+      "scenario_id": "val_00038",
+      "item_name": "二手 AirPods Pro 2",
+      "buyer_budget": 996.0,
+      "seller_cost": 933.0,
+      "market_ref_price": 1375.0,
+      "deal_price": 996.0,
+      "buyer_surplus_share": 0.0,
+      "buyer_reward": 0.7,
+      "seller_reward": 101.4,
+      "turns": [
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 933.0,
+          "utterance": "[报价：933.0] 我最多给你降到这个价，已经比市场价低了快两百了，真的没什么赚头。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 996.0,
+          "utterance": "【第0轮-我方】[报价：996.0] 我最多只能出到这个价，我手头预算真的有限，不行我就再看看别的了。"
+        },
+        {
+          "role": "seller",
+          "action": "deal",
+          "price": 996.0,
+          "utterance": "<deal>996.0</deal>"
+        }
+      ]
+    },
+    "step100_seller": {
+      "scenario_id": "val_00029",
+      "item_name": "二手 Fender Player Stratocaster 电吉他",
+      "buyer_budget": 3054.0,
+      "seller_cost": 2739.0,
+      "market_ref_price": 4114.0,
+      "deal_price": 3054.0,
+      "buyer_surplus_share": 0.0,
+      "buyer_reward": 14.2,
+      "seller_reward": 114.9,
+      "turns": [
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2739.0,
+          "utterance": "[报价：2739.0] 你这价真的太高了，刚才还有个买家出2700我都没卖，你诚心要就这个价。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第0轮-我方】[报价：3054.0] 我确实诚心要，就这个价，你要是同意我现在就拍。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2739.0,
+          "utterance": "【第1轮-卖家】[报价：2739.0] 我也不跟你磨了，就这个价，你要是接受不了就算了。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第1轮-我方】【第1轮-我方】[报价：3054.0] 我最多再加40，真的拿不出更多了，你再考虑下。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2739.0,
+          "utterance": "【第2轮-卖家】【第2轮-卖家】[报价：2739.0] 我再让一步，2739，这是我能接受的最低价，你别再砍了。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第2轮-买家】【第2轮-我方】【第2轮-我方】[报价：3054.0] 我再加40，3054，这真的是我能出的最高价了，行的话我现在就拍。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2739.0,
+          "utterance": "【第3轮-卖家】【第3轮-卖家】[报价：2739.0] 我真的不能再降了，你要是不同意我也没办法。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第3轮-买家】【第3轮-我方】【第3轮-我方】[报价：3054.0] 我再加40，3054，这已经是我所有预算了，行不行？"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2739.0,
+          "utterance": "【第4轮-卖家】【第4轮-卖家】【第4轮-卖家】[报价：2739.0] 我再给你让1块，2739，一分都不能少了。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第4轮-买家】【第4轮-买家】【第4轮-我方】【第4轮-我方】[报价：3054.0] 我再加1块，3054，你同意我现在就拍。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2739.0,
+          "utterance": "【第5轮-卖家】【第5轮-卖家】【第5轮-卖家】[报价：2739.0] 我真的不能再降了，你要是还不同意我就卖给之前那个买家了。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第5轮-买家】【第5轮-买家】【第5轮-我方】【第5轮-我方】【第5轮-我方】[报价：3054.0] 我再加1块，3054，你要是同意我现在就拍。"
+        },
+        {
+          "role": "seller",
+          "action": "deal",
+          "price": 3054.0,
+          "utterance": "<deal>3054.0</deal>"
+        }
+      ]
+    },
+    "final_seller": {
+      "scenario_id": "val_00029",
+      "item_name": "二手 Fender Player Stratocaster 电吉他",
+      "buyer_budget": 3054.0,
+      "seller_cost": 2739.0,
+      "market_ref_price": 4114.0,
+      "deal_price": 3054.0,
+      "buyer_surplus_share": 0.0,
+      "buyer_reward": 8.8,
+      "seller_reward": 109.5,
+      "turns": [
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2739.0,
+          "utterance": "[报价：2739.0] 你这价砍太狠了，我这琴平时都带原装盒充电保养，成色真的很新。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第0轮-我方】[报价：3054.0] 我预算真的不高，最多就出这么多，合适的话我现在就拍。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2739.0,
+          "utterance": "【第1轮-卖家】[报价：2739.0] 真不行，这个价我亏太多了，你去别家肯定能拿到更便宜的。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第1轮-买家】【第1轮-我方】[报价：3054.0] 我真的加不动了，你要是觉得不行我再看看别家。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2739.0,
+          "utterance": "【第2轮-卖家】【第2轮-卖家】[报价：2739.0] 我再给你让2块，这真的是我能出的最低价了，再低我不如留着自己用。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第2轮-买家】【第2轮-买家】【第2轮-我方】[报价：3054.0] 我再给你加2块，真的不能再多了，你同意我现在就拍。"
+        },
+        {
+          "role": "seller",
+          "action": "offer",
+          "price": 2739.0,
+          "utterance": "【第3轮-卖家】【第3轮-卖家】【第3轮-卖家】[报价：2739.0] 我这已经亏很多了，真的不能再降，再少一分我都不卖。"
+        },
+        {
+          "role": "buyer",
+          "action": "offer",
+          "price": 3054.0,
+          "utterance": "【第3轮-买家】【第3轮-买家】【第3轮-买家】【第3轮-我方】【第3轮-成交】[报价：3054.0] 我再加2块，就3054，行的话我现在就拍。"
+        },
+        {
+          "role": "seller",
+          "action": "deal",
+          "price": 3054.0,
+          "utterance": "<deal>3054.0</deal>"
+        }
+      ]
+    }
+  }
+}

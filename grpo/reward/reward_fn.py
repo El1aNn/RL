@@ -4,6 +4,7 @@
 根据 EnvState 的 Outcome + 数值，计算 buyer / seller 各自的 reward。
 返回结构化的明细，方便日志记录。
 """
+import math
 from typing import Dict, Any
 
 from Final_project.grpo.env.negotiation_env import EnvState
@@ -21,6 +22,26 @@ def _safe_zone(state: EnvState, cfg: RewardConfig) -> float:
 def _clip_deal_reward(value: float, cfg: RewardConfig) -> float:
     """Keep terminal deal rewards bounded even when prices are pathological."""
     return max(0.0, min(float(cfg.deal_scale), float(value)))
+
+
+def _deal_utilities(state: EnvState, cfg: RewardConfig) -> Dict[str, float]:
+    """Return buyer/seller utilities in [0, 1] for valid deal prices."""
+    buyer_budget = float(state.scenario.buyer_budget)
+    seller_cost = float(state.scenario.seller_cost)
+    zone = _safe_zone(state, cfg)
+    p = float(state.deal_price)
+    buyer_u = max(0.0, min(1.0, (buyer_budget - p) / zone))
+    seller_u = max(0.0, min(1.0, (p - seller_cost) / zone))
+    return {"buyer": buyer_u, "seller": seller_u}
+
+
+def _shared_balance_terminal(state: EnvState, cfg: RewardConfig) -> float:
+    """Nash-style shared score; high only when both sides receive utility."""
+    utils = _deal_utilities(state, cfg)
+    eps = max(float(cfg.shared_balance_eps), 0.0)
+    buyer_u = max(eps, utils["buyer"])
+    seller_u = max(eps, utils["seller"])
+    return float(cfg.deal_scale) * float(cfg.shared_balance_scale) * math.sqrt(buyer_u * seller_u)
 
 
 def _judge_walkaway(
@@ -141,14 +162,39 @@ def compute_rewards(
         buyer_shaping = compute_shaping_for_role(state, "buyer", cfg)
         seller_shaping = compute_shaping_for_role(state, "seller", cfg)
 
-    buyer_total = terminal["buyer"] + sum(buyer_shaping.values())
-    seller_total = terminal["seller"] + sum(seller_shaping.values())
+    raw_buyer_total = terminal["buyer"] + sum(buyer_shaping.values())
+    raw_seller_total = terminal["seller"] + sum(seller_shaping.values())
+
+    effective_terminal = dict(terminal)
+    shared_terminal = None
+    if cfg.enable_shared_balance_reward and state.outcome == Outcome.DEAL:
+        alpha = max(0.0, min(1.0, float(cfg.shared_balance_alpha)))
+        shared_terminal = _shared_balance_terminal(state, cfg)
+        effective_terminal = {
+            role: (1.0 - alpha) * terminal[role] + alpha * shared_terminal
+            for role in ("buyer", "seller")
+        }
+
+    buyer_total = effective_terminal["buyer"] + sum(buyer_shaping.values())
+    seller_total = effective_terminal["seller"] + sum(seller_shaping.values())
 
     return {
         "buyer_reward": buyer_total,
         "seller_reward": seller_total,
+        "raw_buyer_reward": raw_buyer_total,
+        "raw_seller_reward": raw_seller_total,
         "breakdown": {
-            "buyer": {"terminal": terminal["buyer"], **buyer_shaping},
-            "seller": {"terminal": terminal["seller"], **seller_shaping},
+            "buyer": {
+                "terminal": effective_terminal["buyer"],
+                "raw_terminal": terminal["buyer"],
+                **({"shared_balance_terminal": shared_terminal} if shared_terminal is not None else {}),
+                **buyer_shaping,
+            },
+            "seller": {
+                "terminal": effective_terminal["seller"],
+                "raw_terminal": terminal["seller"],
+                **({"shared_balance_terminal": shared_terminal} if shared_terminal is not None else {}),
+                **seller_shaping,
+            },
         },
     }

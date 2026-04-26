@@ -1,0 +1,25 @@
+
+libgomp: Invalid value for environment variable OMP_NUM_THREADS
+swanlab: Tracking run with swanlab version 0.7.16
+swanlab: Run data will be saved locally in 
+/root/autodl-tmp/logs/swanlab/run-20260426_192952-pxvaowsymdnxy2gxj7tuw
+swanlab: 👋 Hi El1an,welcome to swanlab!
+swanlab: Syncing run grpo-stage1-2-buyer-vs-stage2-seller-100-20260426_112949 to
+the cloud
+swanlab: 🏠 View project at https://swanlab.cn/@El1an/grpo-negotiation
+swanlab: 🚀 View run at 
+https://swanlab.cn/@El1an/grpo-negotiation/runs/pxvaowsymdnxy2gxj7tuw
+[swanlab] logging enabled
+[train] stage=stage1_2  active_role=buyer
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 12.86it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 12.95it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 12.93it/s]
+INFO 04-26 19:30:04 llm_engine.py:74] Initializing an LLM engine (v0.4.0.post1) with config: model='/root/autodl-tmp/models/merged_think', tokenizer='/root/autodl-tmp/models/merged_think', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, disable_custom_all_reduce=True, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, seed=42)
+INFO 04-26 19:30:05 selector.py:51] Cannot use FlashAttention because the package is not found. Please install it for better performance.
+INFO 04-26 19:30:05 selector.py:25] Using XFormers backend.
+INFO 04-26 19:30:07 model_runner.py:104] Loading model weights took 5.7915 GB
+INFO 04-26 19:30:08 gpu_executor.py:94] # GPU blocks: 71704, # CPU blocks: 7281
+trainable LoRA params for adapter 'buyer': 119,734,272
+trainable LoRA params for adapter 'seller': 119,734,272
+/root/miniconda3/lib/python3.10/site-packages/torch/utils/checkpoint.py:61: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+[step 0] role=buyer loss=0.1405 pg=0.1368 kl=0.0627 deal_rate=100.00% active_reward=-53.19 buyer_reward=-53.19 seller_reward=98.91 rounds=3.3 samples=45 time=36.4s

@@ -628,7 +628,9 @@ class NegotiationGRPOTrainer:
                 f"[step {self.global_step}] role={role} loss={loss_info['loss']:.4f} "
                 f"pg={loss_info['pg_loss']:.4f} kl={loss_info['kl']:.4f} "
                 f"deal_rate={metrics['rollout/deal_rate']:.2%} "
-                f"reward={metrics['rollout/avg_reward']:.2f} "
+                f"active_reward={metrics['rollout/active_avg_reward']:.2f} "
+                f"buyer_reward={metrics['rollout/buyer_avg_reward']:.2f} "
+                f"seller_reward={metrics['rollout/seller_avg_reward']:.2f} "
                 f"rounds={metrics['rollout/avg_rounds']:.1f} "
                 f"samples={len(flat_samples)} time={step_time:.1f}s"
             )
@@ -651,7 +653,14 @@ class NegotiationGRPOTrainer:
         metrics = {
             f"{prefix}/trajectories": len(all_trajs),
             f"{prefix}/samples": num_samples,
+            # Backward-compatible active-role reward. In alternating training this
+            # naturally zigzags because buyer and seller rewards have different scales.
             f"{prefix}/avg_reward": sum(t.advantage_reward for t in all_trajs) / n,
+            f"{prefix}/active_avg_reward": sum(t.advantage_reward for t in all_trajs) / n,
+            f"{prefix}/buyer_avg_reward": sum(t.buyer_reward for t in all_trajs) / n,
+            f"{prefix}/seller_avg_reward": sum(t.seller_reward for t in all_trajs) / n,
+            f"{prefix}/raw_buyer_avg_reward": sum(t.raw_buyer_reward for t in all_trajs) / n,
+            f"{prefix}/raw_seller_avg_reward": sum(t.raw_seller_reward for t in all_trajs) / n,
             f"{prefix}/avg_rounds": sum(len(t.final_state.history) for t in all_trajs) / n / 2,
             f"{prefix}/deal_rate": sum(1 for t in all_trajs if t.final_state.outcome.is_deal) / n,
             f"{prefix}/step_time_sec": step_time,

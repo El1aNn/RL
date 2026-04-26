@@ -1,0 +1,50 @@
+
+libgomp: Invalid value for environment variable OMP_NUM_THREADS
+swanlab: Tracking run with swanlab version 0.7.16
+swanlab: Run data will be saved locally in 
+/root/autodl-tmp/logs/swanlab/run-20260426_161257-183z7i1fm812hdphyjbwf
+swanlab: 👋 Hi El1an,welcome to swanlab!
+swanlab: Syncing run grpo-stage2-seller-rewardfix-guard-100-20260426_081253 to 
+the cloud
+swanlab: 🏠 View project at https://swanlab.cn/@El1an/grpo-negotiation
+swanlab: 🚀 View run at 
+https://swanlab.cn/@El1an/grpo-negotiation/runs/183z7i1fm812hdphyjbwf
+[swanlab] logging enabled
+[train] stage=stage2  active_role=seller
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 11.80it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 12.91it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 12.72it/s]
+INFO 04-26 16:13:09 llm_engine.py:74] Initializing an LLM engine (v0.4.0.post1) with config: model='/root/autodl-tmp/models/merged_think', tokenizer='/root/autodl-tmp/models/merged_think', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, disable_custom_all_reduce=True, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, seed=42)
+INFO 04-26 16:13:10 selector.py:51] Cannot use FlashAttention because the package is not found. Please install it for better performance.
+INFO 04-26 16:13:10 selector.py:25] Using XFormers backend.
+INFO 04-26 16:13:12 model_runner.py:104] Loading model weights took 5.7915 GB
+INFO 04-26 16:13:13 gpu_executor.py:94] # GPU blocks: 78903, # CPU blocks: 7281
+trainable LoRA params for adapter 'buyer': 119,734,272
+trainable LoRA params for adapter 'seller': 119,734,272
+/root/miniconda3/lib/python3.10/site-packages/torch/utils/checkpoint.py:61: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+[step 0] role=seller loss=0.0872 pg=0.0872 kl=0.0000 deal_rate=37.50% reward=25.49 rounds=5.0 samples=43 time=43.5s
+[step 10] role=seller loss=0.2727 pg=0.2726 kl=0.0012 deal_rate=87.50% reward=80.06 rounds=6.2 samples=54 time=57.3s
+[step 20] role=seller loss=0.1537 pg=0.1535 kl=0.0055 deal_rate=87.50% reward=13.89 rounds=5.5 samples=48 time=50.0s
+[eval step 25] reward=78.93 deal_rate=96.09%
+[eval] saved results to checkpoints/grpo/stage2_seller_rewardfix_guard_100/eval_results.jsonl
+[save] adapter 'seller' → checkpoints/grpo/stage2_seller_rewardfix_guard_100/best/seller
+[step 30] role=seller loss=0.1529 pg=0.1520 kl=0.0235 deal_rate=100.00% reward=84.86 rounds=3.8 samples=34 time=25.7s
+[step 40] role=seller loss=-0.0456 pg=-0.0476 kl=0.0480 deal_rate=100.00% reward=102.32 rounds=3.0 samples=28 time=21.5s
+[eval step 50] reward=94.80 deal_rate=99.22%
+[eval] saved results to checkpoints/grpo/stage2_seller_rewardfix_guard_100/eval_results.jsonl
+[save] adapter 'seller' → checkpoints/grpo/stage2_seller_rewardfix_guard_100/best/seller
+[save] adapter 'seller' → checkpoints/grpo/stage2_seller_rewardfix_guard_100/step_50/seller
+[step 50] role=seller loss=-0.1271 pg=-0.1306 kl=0.0891 deal_rate=100.00% reward=104.44 rounds=2.6 samples=25 time=18.3s
+[step 60] role=seller loss=-0.2313 pg=-0.2337 kl=0.0608 deal_rate=100.00% reward=105.11 rounds=2.9 samples=27 time=19.5s
+[step 70] role=seller loss=0.0124 pg=0.0110 kl=0.0348 deal_rate=100.00% reward=104.64 rounds=3.6 samples=33 time=25.5s
+[eval step 75] reward=90.61 deal_rate=97.66%
+[eval] saved results to checkpoints/grpo/stage2_seller_rewardfix_guard_100/eval_results.jsonl
+[step 80] role=seller loss=0.0249 pg=0.0241 kl=0.0216 deal_rate=100.00% reward=108.25 rounds=4.5 samples=40 time=29.7s
+[step 90] role=seller loss=-0.2597 pg=-0.2605 kl=0.0186 deal_rate=100.00% reward=46.65 rounds=4.2 samples=36 time=32.1s
+[eval step 100] reward=85.71 deal_rate=93.75%
+[eval] saved results to checkpoints/grpo/stage2_seller_rewardfix_guard_100/eval_results.jsonl
+[save] adapter 'seller' → checkpoints/grpo/stage2_seller_rewardfix_guard_100/step_100/seller
+[save] adapter 'seller' → checkpoints/grpo/stage2_seller_rewardfix_guard_100/final/seller
+swanlab: 🏠 View project at https://swanlab.cn/@El1an/grpo-negotiation
+swanlab: 🚀 View run at 
+https://swanlab.cn/@El1an/grpo-negotiation/runs/183z7i1fm812hdphyjbwf

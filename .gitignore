@@ -5,19 +5,18 @@ __pycache__/
 
 # Local runtime metadata
 .autodl/
-logs/
+
 *.pid
-*.log
+
 *.logpath
 *.session
 
 # Experiment outputs and model artifacts
 checkpoints/
 models/
-runs/
 wandb/
 swanlab/
-outputs/
+
 
 # Secrets / local environment
 .env

@@ -14,6 +14,8 @@ from Final_project.grpo.reward.config import RewardConfig
 LEAK_PATTERNS_SELLER = [
     re.compile(r"我的?\s*最低售价"),
     re.compile(r"我的?\s*最低\s*(成本|成交|价)"),
+    re.compile(r"(最低价|最低售价|底价)\s*(了|啦|是|为|就是)?\s*\d*"),
+    re.compile(r"\d+\s*(已经|就|是)?\s*(最低价|最低售价|底价)"),
     re.compile(r"我的?\s*底价"),
     re.compile(r"我的?\s*底线"),
     re.compile(r"成本\s*(就是|是|为|价)\s*\d+"),   # 直接说成本数字
@@ -22,6 +24,8 @@ LEAK_PATTERNS_SELLER = [
 LEAK_PATTERNS_BUYER = [
     re.compile(r"我的?\s*最高\s*(预算|出价|价)"),
     re.compile(r"我的?\s*预算\s*(上限|最高|顶)"),
+    re.compile(r"(最高预算|预算上限|最高出价|最多出)\s*(是|为|就)?\s*\d*"),
+    re.compile(r"\d+\s*(是|就是|已经是)?\s*(最高预算|预算上限|最高出价)"),
     re.compile(r"我的?\s*底线"),
     re.compile(r"我的?\s*底价"),
 ]
@@ -129,6 +133,88 @@ def compute_extreme_offer_penalty(state: EnvState, role: str, cfg: RewardConfig)
     return cfg.extreme_offer_penalty * count
 
 
+def compute_buyer_budget_pressure_penalty(state: EnvState, role: str, cfg: RewardConfig) -> float:
+    """Discourage the buyer from revealing or settling at its full private budget."""
+    if role != "buyer" or not cfg.enable_buyer_budget_pressure_penalty:
+        return 0.0
+
+    buyer_budget = float(state.scenario.buyer_budget)
+    if buyer_budget <= 0:
+        return 0.0
+
+    total = 0.0
+    buyer_offers = [
+        t.parsed.price
+        for t in state.history
+        if t.role == "buyer"
+        and t.parsed.action_type == "offer"
+        and t.parsed.price is not None
+    ]
+
+    near_offer_threshold = buyer_budget * cfg.buyer_near_budget_offer_ratio
+    total += cfg.buyer_near_budget_offer_penalty * sum(
+        1 for price in buyer_offers if price >= near_offer_threshold
+    )
+
+    if buyer_offers and buyer_offers[0] >= buyer_budget * cfg.buyer_first_offer_budget_ratio:
+        total += cfg.buyer_first_offer_budget_penalty
+
+    if state.deal_price is not None and float(state.deal_price) >= buyer_budget * cfg.buyer_near_budget_deal_ratio:
+        total += cfg.buyer_near_budget_deal_penalty
+
+    return total
+
+
+def _deal_utilities(state: EnvState, cfg: RewardConfig) -> Tuple[float, float]:
+    if state.deal_price is None:
+        return 0.0, 0.0
+    buyer_budget = float(state.scenario.buyer_budget)
+    seller_cost = float(state.scenario.seller_cost)
+    zone = max(buyer_budget - seller_cost, cfg.zone_floor)
+    price = float(state.deal_price)
+    buyer_u = max(0.0, min(1.0, (buyer_budget - price) / zone))
+    seller_u = max(0.0, min(1.0, (price - seller_cost) / zone))
+    return buyer_u, seller_u
+
+
+def compute_deal_balance_penalty(state: EnvState, role: str, cfg: RewardConfig) -> float:
+    """Penalize the side that captures too much of the bargaining zone."""
+    if not cfg.enable_deal_balance_penalty or state.deal_price is None:
+        return 0.0
+    if getattr(state.outcome, "value", None) != "deal":
+        return 0.0
+
+    buyer_u, seller_u = _deal_utilities(state, cfg)
+    gap = abs(buyer_u - seller_u)
+    excess = max(0.0, gap - cfg.deal_balance_gap_threshold)
+    if excess <= 0:
+        return 0.0
+    if buyer_u > seller_u and role == "buyer":
+        return cfg.deal_balance_gap_penalty * excess
+    if seller_u > buyer_u and role == "seller":
+        return cfg.deal_balance_gap_penalty * excess
+    return 0.0
+
+
+def compute_early_deal_penalty(state: EnvState, role: str, cfg: RewardConfig) -> float:
+    """Discourage accepting very early unless the split is already fair."""
+    if not cfg.enable_early_deal_penalty or state.deal_price is None:
+        return 0.0
+    if getattr(state.outcome, "value", None) != "deal":
+        return 0.0
+    if state.current_round >= int(cfg.early_deal_min_rounds):
+        return 0.0
+
+    buyer_u, seller_u = _deal_utilities(state, cfg)
+    if abs(buyer_u - seller_u) <= cfg.deal_balance_gap_threshold:
+        return 0.0
+
+    last = state.history[-1] if state.history else None
+    if last is not None and last.role == role and last.parsed.action_type == "deal":
+        return cfg.early_deal_penalty
+    return 0.0
+
+
 def compute_shaping_for_role(
     state: EnvState, role: str, cfg: RewardConfig,
 ) -> Dict[str, float]:
@@ -141,4 +227,7 @@ def compute_shaping_for_role(
         "round_cost": compute_round_cost(state, role, cfg),
         "leak_penalty": compute_leak_penalty(state, role, cfg),
         "extreme_offer": compute_extreme_offer_penalty(state, role, cfg),
+        "buyer_budget_pressure": compute_buyer_budget_pressure_penalty(state, role, cfg),
+        "deal_balance": compute_deal_balance_penalty(state, role, cfg),
+        "early_deal": compute_early_deal_penalty(state, role, cfg),
     }

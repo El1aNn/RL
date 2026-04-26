@@ -1,0 +1,55 @@
+
+libgomp: Invalid value for environment variable OMP_NUM_THREADS
+swanlab: Tracking run with swanlab version 0.7.16
+swanlab: Run data will be saved locally in 
+/root/autodl-tmp/logs/swanlab/run-20260426_205415-7vsxxlmbbwrdvkl7un8cb
+swanlab: 👋 Hi El1an,welcome to swanlab!
+swanlab: Syncing run grpo-stage3-balanced-from-s12-best-100-20260426_125411 to 
+the cloud
+swanlab: 🏠 View project at https://swanlab.cn/@El1an/grpo-negotiation
+swanlab: 🚀 View run at 
+https://swanlab.cn/@El1an/grpo-negotiation/runs/7vsxxlmbbwrdvkl7un8cb
+[swanlab] logging enabled
+[train] stage=stage3  active_role=alternating
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 12.06it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 12.94it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 12.79it/s]
+INFO 04-26 20:54:27 llm_engine.py:74] Initializing an LLM engine (v0.4.0.post1) with config: model='/root/autodl-tmp/models/merged_think', tokenizer='/root/autodl-tmp/models/merged_think', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, disable_custom_all_reduce=True, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, seed=42)
+INFO 04-26 20:54:28 selector.py:51] Cannot use FlashAttention because the package is not found. Please install it for better performance.
+INFO 04-26 20:54:28 selector.py:25] Using XFormers backend.
+INFO 04-26 20:54:30 model_runner.py:104] Loading model weights took 5.7915 GB
+INFO 04-26 20:54:31 gpu_executor.py:94] # GPU blocks: 71704, # CPU blocks: 7281
+trainable LoRA params for adapter 'buyer': 119,734,272
+trainable LoRA params for adapter 'seller': 119,734,272
+/root/miniconda3/lib/python3.10/site-packages/torch/utils/checkpoint.py:61: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+[step 0] role=buyer loss=0.1191 pg=0.2306 kl=0.0761 deal_rate=100.00% active_reward=44.22 buyer_reward=44.22 seller_reward=-22.10 rounds=2.1 samples=26 time=23.0s
+[step 10] role=buyer loss=-0.1036 pg=-0.2165 kl=0.0940 deal_rate=100.00% active_reward=47.65 buyer_reward=47.65 seller_reward=16.62 rounds=1.9 samples=23 time=18.7s
+[eval step 20] reward=44.71 deal_rate=100.00%
+[eval] saved results to checkpoints/grpo/stage3_balanced_from_s12_best_100/eval_results.jsonl
+[save] adapter 'buyer' → checkpoints/grpo/stage3_balanced_from_s12_best_100/best/buyer
+[save] adapter 'seller' → checkpoints/grpo/stage3_balanced_from_s12_best_100/best/seller
+[step 20] role=buyer loss=0.0639 pg=0.1174 kl=0.1046 deal_rate=100.00% active_reward=37.57 buyer_reward=37.57 seller_reward=-22.68 rounds=1.8 samples=21 time=15.2s
+[step 30] role=buyer loss=-0.0238 pg=-0.0557 kl=0.0813 deal_rate=100.00% active_reward=-27.06 buyer_reward=-27.06 seller_reward=31.50 rounds=2.1 samples=26 time=18.3s
+[eval step 40] reward=34.59 deal_rate=100.00%
+[eval] saved results to checkpoints/grpo/stage3_balanced_from_s12_best_100/eval_results.jsonl
+[save] adapter 'buyer' → checkpoints/grpo/stage3_balanced_from_s12_best_100/step_40/buyer
+[save] adapter 'seller' → checkpoints/grpo/stage3_balanced_from_s12_best_100/step_40/seller
+[step 40] role=buyer loss=0.0220 pg=0.0371 kl=0.0695 deal_rate=100.00% active_reward=10.48 buyer_reward=10.48 seller_reward=55.16 rounds=2.0 samples=24 time=18.4s
+[step 50] role=buyer loss=-0.1317 pg=-0.2734 kl=0.0997 deal_rate=100.00% active_reward=50.16 buyer_reward=50.16 seller_reward=44.78 rounds=1.8 samples=21 time=17.7s
+[eval step 60] reward=35.45 deal_rate=100.00%
+[eval] saved results to checkpoints/grpo/stage3_balanced_from_s12_best_100/eval_results.jsonl
+[step 60] role=buyer loss=-0.0204 pg=-0.0526 kl=0.1185 deal_rate=100.00% active_reward=20.31 buyer_reward=20.31 seller_reward=48.34 rounds=1.6 samples=18 time=13.2s
+[step 70] role=buyer loss=0.1380 pg=0.2691 kl=0.0694 deal_rate=100.00% active_reward=25.51 buyer_reward=25.51 seller_reward=50.80 rounds=1.9 samples=23 time=16.8s
+[eval step 80] reward=28.05 deal_rate=100.00%
+[eval] saved results to checkpoints/grpo/stage3_balanced_from_s12_best_100/eval_results.jsonl
+[save] adapter 'buyer' → checkpoints/grpo/stage3_balanced_from_s12_best_100/step_80/buyer
+[save] adapter 'seller' → checkpoints/grpo/stage3_balanced_from_s12_best_100/step_80/seller
+[step 80] role=buyer loss=0.0589 pg=0.1095 kl=0.0829 deal_rate=100.00% active_reward=29.53 buyer_reward=29.53 seller_reward=21.14 rounds=1.9 samples=22 time=17.4s
+[step 90] role=buyer loss=0.1181 pg=0.2273 kl=0.0903 deal_rate=100.00% active_reward=38.18 buyer_reward=38.18 seller_reward=12.07 rounds=2.1 samples=26 time=21.2s
+[eval step 100] reward=32.24 deal_rate=100.00%
+[eval] saved results to checkpoints/grpo/stage3_balanced_from_s12_best_100/eval_results.jsonl
+[save] adapter 'buyer' → checkpoints/grpo/stage3_balanced_from_s12_best_100/final/buyer
+[save] adapter 'seller' → checkpoints/grpo/stage3_balanced_from_s12_best_100/final/seller
+swanlab: 🏠 View project at https://swanlab.cn/@El1an/grpo-negotiation
+swanlab: 🚀 View run at 
+https://swanlab.cn/@El1an/grpo-negotiation/runs/7vsxxlmbbwrdvkl7un8cb

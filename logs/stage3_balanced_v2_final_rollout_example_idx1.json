@@ -1,0 +1,121 @@
+{
+  "buyer_adapter": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_v2_from_s12_best_100/final/buyer",
+  "seller_adapter": "/root/autodl-tmp/checkpoints/grpo/stage3_balanced_v2_from_s12_best_100/final/seller",
+  "scenario": {
+    "scenario_id": "val_00151",
+    "item_name": "二手富士 X-T5 机身",
+    "item_description": "银色，使用一年，有正常使用痕迹，附送 UV 镜",
+    "buyer_budget": 9580.0,
+    "seller_cost": 7014.0,
+    "market_ref_price": 10156.0,
+    "max_rounds": 10,
+    "metadata": {}
+  },
+  "dialogue": [
+    {
+      "round": 0,
+      "role": "seller",
+      "utterance": "[报价：7700] 你这价连裸机都收不到，我再给你让100，诚心要就拿。",
+      "action_type": "offer",
+      "price": 7700.0,
+      "is_format_valid": true
+    },
+    {
+      "round": 0,
+      "role": "buyer",
+      "utterance": "[报价：7450] 我刚看了下其他平台同款，成色差不多的也就这个价，我再加50。",
+      "action_type": "offer",
+      "price": 7450.0,
+      "is_format_valid": true
+    },
+    {
+      "round": 1,
+      "role": "seller",
+      "utterance": "[报价：7680] 我再给你降80，我这机子保养得特别好，你到手直接用不用我额外花钱修。",
+      "action_type": "offer",
+      "price": 7680.0,
+      "is_format_valid": true
+    },
+    {
+      "round": 1,
+      "role": "buyer",
+      "utterance": "[报价：7450] 我再加50，我预算确实有限，不行我就去看别家的了。",
+      "action_type": "offer",
+      "price": 7450.0,
+      "is_format_valid": true
+    },
+    {
+      "round": 2,
+      "role": "seller",
+      "utterance": "[报价：7620] 我再给你降30，我这机子保养得跟新的差不多，你到手直接用，不用我额外花钱做保养。",
+      "action_type": "offer",
+      "price": 7620.0,
+      "is_format_valid": true
+    },
+    {
+      "round": 2,
+      "role": "buyer",
+      "utterance": "[报价：7450] 我再加50，我预算真的有限，不行我就去看别的机型了。",
+      "action_type": "offer",
+      "price": 7450.0,
+      "is_format_valid": true
+    },
+    {
+      "round": 3,
+      "role": "seller",
+      "utterance": "[报价：7580] 我再给你降10，这是我最后的让步了，你要是觉得合适就拍，不合适我就给刚才问的那个买家了。",
+      "action_type": "offer",
+      "price": 7580.0,
+      "is_format_valid": true
+    },
+    {
+      "round": 3,
+      "role": "buyer",
+      "utterance": "[报价：7450] 我再加50，真的不能再加了，我预算就这么多。",
+      "action_type": "offer",
+      "price": 7450.0,
+      "is_format_valid": true
+    },
+    {
+      "round": 4,
+      "role": "seller",
+      "utterance": "<deal>7450</deal>",
+      "action_type": "deal",
+      "price": 7450.0,
+      "is_format_valid": true
+    }
+  ],
+  "result": {
+    "outcome": "deal",
+    "deal_price": 7450.0,
+    "terminated_reason": "seller_deal",
+    "buyer_reward": 91.80857365549492,
+    "seller_reward": 26.491426344505065,
+    "reward_breakdown": {
+      "buyer": {
+        "terminal": 83.00857365549493,
+        "raw_terminal": 83.00857365549493,
+        "format_bonus": 4.0,
+        "monotone": 6.0,
+        "round_cost": -1.2,
+        "leak_penalty": -0.0,
+        "extreme_offer": -0.0,
+        "buyer_budget_pressure": 0.0,
+        "deal_balance": 0.0,
+        "early_deal": 0.0
+      },
+      "seller": {
+        "terminal": 16.991426344505065,
+        "raw_terminal": 16.991426344505065,
+        "format_bonus": 5.0,
+        "monotone": 6.0,
+        "round_cost": -1.5,
+        "leak_penalty": -0.0,
+        "extreme_offer": -0.0,
+        "buyer_budget_pressure": 0.0,
+        "deal_balance": 0.0,
+        "early_deal": 0.0
+      }
+    }
+  }
+}

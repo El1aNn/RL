@@ -1,0 +1,44 @@
+bash: cannot set terminal process group (26549): Inappropriate ioctl for device
+bash: no job control in this shell
++--------------------------------------------------AutoDL--------------------------------------------------------+
+[32m目录说明:[0m
+╔═════════════════╦════════╦════╦═════════════════════════════════════════════════════════════════════════╗
+║目录             ║名称    ║速度║说明                                                                     ║
+╠═════════════════╬════════╬════╬═════════════════════════════════════════════════════════════════════════╣
+║/                ║系 统 盘║一般║实例关机数据不会丢失，可存放代码等。会随保存镜像一起保存。               ║
+║/root/autodl-tmp ║数 据 盘║ 快 ║实例关机数据不会丢失，可存放读写IO要求高的数据。但不会随保存镜像一起保存 ║
+╚═════════════════╩════════╩════╩═════════════════════════════════════════════════════════════════════════╝
+[32mCPU[0m ：14 核心
+[32m内存[0m：120 GB
+[32mGPU [0m：NVIDIA A800 80GB PCIe, 1
+[32m存储[0m：
+[32m  系 统 盘/               [0m：73% 22G/30G
+[32m  数 据 盘/root/autodl-tmp[0m：32% 16G/50G
++----------------------------------------------------------------------------------------------------------------+
+[31m*注意: [0m
+[31m1.系统盘较小请将大的数据存放于数据盘或网盘中，重置系统时数据盘和网盘中的数据不受影响[0m
+[31m2.清理系统盘请参考：https://www.autodl.com/docs/qa1/[0m
+swanlab: Tracking run with swanlab version 0.7.16
+swanlab: Run data will be saved locally in 
+/root/autodl-tmp/logs/swanlab/run-20260426_012556-ltcfrk9mi1lobqt5ltmld
+swanlab: 👋 Hi El1an,welcome to swanlab!
+swanlab: Syncing run grpo-stage1-stable to the cloud
+swanlab: 🏠 View project at https://swanlab.cn/@El1an/grpo-negotiation
+swanlab: 🚀 View run at 
+https://swanlab.cn/@El1an/grpo-negotiation/runs/ltcfrk9mi1lobqt5ltmld
+[swanlab] logging enabled
+[train] stage=stage1  active_role=buyer
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00, 11.22it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 12.58it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00, 12.35it/s]
+INFO 04-26 01:26:02 llm_engine.py:74] Initializing an LLM engine (v0.4.0.post1) with config: model='/root/autodl-tmp/models/merged_think', tokenizer='/root/autodl-tmp/models/merged_think', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, disable_custom_all_reduce=True, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, seed=42)
+INFO 04-26 01:26:03 selector.py:51] Cannot use FlashAttention because the package is not found. Please install it for better performance.
+INFO 04-26 01:26:03 selector.py:25] Using XFormers backend.
+INFO 04-26 01:26:05 model_runner.py:104] Loading model weights took 5.7915 GB
+INFO 04-26 01:26:06 gpu_executor.py:94] # GPU blocks: 21195, # CPU blocks: 7281
+trainable LoRA params for adapter 'buyer': 119,734,272
+trainable LoRA params for adapter 'seller': 119,734,272
+/root/miniconda3/lib/python3.10/site-packages/torch/utils/checkpoint.py:61: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+[step 0] role=buyer loss=-0.0710 pg=-0.0710 kl=0.0000 deal_rate=75.00% reward=82.93 rounds=5.5 samples=20 time=30.4s
+[step 10] role=buyer loss=0.4245 pg=0.4244 kl=0.0009 deal_rate=75.00% reward=60.51 rounds=5.2 samples=20 time=45.1s
+[step 20] role=buyer loss=0.2592 pg=0.2591 kl=0.0022 deal_rate=50.00% reward=37.83 rounds=5.0 samples=19 time=41.4s

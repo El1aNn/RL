@@ -1,0 +1,26 @@
+[stage2] using buyer adapter: /root/autodl-tmp/checkpoints/grpo/stage1/best/buyer
+
+libgomp: Invalid value for environment variable OMP_NUM_THREADS
+swanlab: Tracking run with swanlab version 0.7.16
+swanlab: Run data will be saved locally in 
+/root/autodl-tmp/logs/swanlab/run-20260426_142102-fewkbxdu1097jcuvj7v7i
+swanlab: 👋 Hi El1an,welcome to swanlab!
+swanlab: Syncing run grpo-stage2-250-mem80b-20260426_062059 to the cloud
+swanlab: 🏠 View project at https://swanlab.cn/@El1an/grpo-negotiation
+swanlab: 🚀 View run at 
+https://swanlab.cn/@El1an/grpo-negotiation/runs/fewkbxdu1097jcuvj7v7i
+[swanlab] logging enabled
+[train] stage=stage2  active_role=seller
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  9.05it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  8.79it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  9.30it/s]
+INFO 04-26 14:21:14 llm_engine.py:74] Initializing an LLM engine (v0.4.0.post1) with config: model='/root/autodl-tmp/models/merged_think', tokenizer='/root/autodl-tmp/models/merged_think', tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, disable_custom_all_reduce=True, quantization=None, enforce_eager=True, kv_cache_dtype=auto, device_config=cuda, seed=42)
+INFO 04-26 14:21:16 selector.py:51] Cannot use FlashAttention because the package is not found. Please install it for better performance.
+INFO 04-26 14:21:16 selector.py:25] Using XFormers backend.
+INFO 04-26 14:21:17 model_runner.py:104] Loading model weights took 5.7915 GB
+INFO 04-26 14:21:18 gpu_executor.py:94] # GPU blocks: 86117, # CPU blocks: 7281
+trainable LoRA params for adapter 'buyer': 119,734,272
+trainable LoRA params for adapter 'seller': 119,734,272
+/root/miniconda3/lib/python3.10/site-packages/torch/utils/checkpoint.py:61: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+[step 0] role=seller loss=0.0412 pg=0.0412 kl=0.0000 deal_rate=100.00% reward=-83.94 rounds=5.2 samples=46 time=43.1s
+/root/autodl-tmp/Final_project/grpo/scripts/stage2_train_seller_mem80.sh: line 33: 11085 Killed                  python3 -u -m Final_project.grpo.train --config Final_project/grpo/configs/default.yaml --stage stage2 --override "adapter_init.buyer=${stage1_buyer_adapter}" --override "stage2.total_steps=250" --override "model.max_model_len=2048" --override "vllm.enforce_eager=true" --override "vllm.gpu_memory_utilization=0.70" --override "rollout.group_size=8" --override "rollout.max_new_tokens=96" --override "train.per_device_train_batch_size=1" --override "train.policy_mini_batch_size=2" --override "train.max_prompt_length=1536" --override "train.max_completion_length=96" --override "swanlab.experiment_name=${exp_name}" "$@"

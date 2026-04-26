@@ -9,6 +9,11 @@
     python -m Final_project.grpo.train --config ... --stage stage2 \
         --override "adapter_init.buyer=./checkpoints/grpo/stage1/best"
 
+    # 阶段 1.2（冻结 stage2 seller，继续训练 buyer）
+    python -m Final_project.grpo.train --config ... --stage stage1_2 \
+        --override "adapter_init.buyer=./checkpoints/grpo/stage1/best/buyer" \
+        --override "adapter_init.seller=./checkpoints/grpo/stage2/best/seller"
+
     # 阶段 3（需要 stage1 + stage2）
     python -m Final_project.grpo.train --config ... --stage stage3 \
         --override "adapter_init.buyer=./checkpoints/grpo/stage1/best" \
@@ -312,7 +317,7 @@ def build_grpo_config(cfg, stage_cfg) -> GRPOConfig:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True)
-    parser.add_argument("--stage", required=True, choices=["stage1", "stage2", "stage3"])
+    parser.add_argument("--stage", required=True, choices=["stage1", "stage1_2", "stage2", "stage3"])
     parser.add_argument("--override", action="append", default=[],
                         help="覆盖配置，格式 key.path=value，可多次")
     args = parser.parse_args()

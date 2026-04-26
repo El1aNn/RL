@@ -24,6 +24,10 @@ class RewardConfig:
     enable_round_cost: bool = True
     enable_leak_penalty: bool = True
     enable_extreme_offer_penalty: bool = True
+    enable_buyer_budget_pressure_penalty: bool = False
+    enable_shared_balance_reward: bool = False
+    enable_deal_balance_penalty: bool = False
+    enable_early_deal_penalty: bool = False
 
     # ---- Shaping 数值 ----
     format_bonus: float = 1.0           # 每轮格式合规 +1
@@ -34,6 +38,19 @@ class RewardConfig:
     extreme_offer_penalty: float = -8.0 # 明显脱离市场价的报价
     buyer_min_market_ratio: float = 0.35
     seller_max_market_ratio: float = 1.65
+    buyer_near_budget_offer_ratio: float = 0.98
+    buyer_near_budget_offer_penalty: float = -8.0
+    buyer_first_offer_budget_ratio: float = 0.95
+    buyer_first_offer_budget_penalty: float = -15.0
+    buyer_near_budget_deal_ratio: float = 0.98
+    buyer_near_budget_deal_penalty: float = -20.0
+    shared_balance_alpha: float = 0.35
+    shared_balance_scale: float = 1.0
+    shared_balance_eps: float = 1.0e-3
+    deal_balance_gap_threshold: float = 0.25
+    deal_balance_gap_penalty: float = -40.0
+    early_deal_min_rounds: int = 2
+    early_deal_penalty: float = -4.0
 
     # ---- 零谈判空间的防方差爆炸 ----
     zone_floor: float = 1.0             # 分母最小值

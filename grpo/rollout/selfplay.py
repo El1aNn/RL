@@ -49,6 +49,8 @@ class RolloutTrajectory:
     # reward
     buyer_reward: float = 0.0
     seller_reward: float = 0.0
+    raw_buyer_reward: float = 0.0
+    raw_seller_reward: float = 0.0
     reward_breakdown: Dict[str, Any] = field(default_factory=dict)
 
     @property
@@ -117,6 +119,10 @@ class SelfPlayRollout:
         cleaned = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL | re.IGNORECASE)
         # 容错：若模型输出了残缺标签，也直接去掉标签文本。
         cleaned = re.sub(r"</?think>", "", cleaned, flags=re.IGNORECASE)
+        # 容错：SFT 样本里的历史标签有时会被模型复读到回复开头。
+        # 这些标签不是谈判协议的一部分，进入环境前统一剥离。
+        cleaned = re.sub(r"^\s*【第\d+轮-(?:你|买家|卖家|buyer|seller)】\s*", "", cleaned, flags=re.IGNORECASE)
+        cleaned = re.sub(r"^\s*(?:第\d+轮[-：:])\s*", "", cleaned, flags=re.IGNORECASE)
         return cleaned.strip()
 
     def _recent_buyer_offers_below_cost(self, env: NegotiationEnv, seller_cost: float) -> int:
@@ -253,6 +259,8 @@ class SelfPlayRollout:
                 active_turns=active_records[i],
                 buyer_reward=r["buyer_reward"],
                 seller_reward=r["seller_reward"],
+                raw_buyer_reward=r.get("raw_buyer_reward", r["buyer_reward"]),
+                raw_seller_reward=r.get("raw_seller_reward", r["seller_reward"]),
                 reward_breakdown=r["breakdown"],
             )
             groups[si].trajectories.append(traj)
