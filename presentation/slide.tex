@@ -222,40 +222,39 @@ adapter, otherwise optimizer steps can mix buyer and seller updates.
 
 \section{Results and Demo}
 
-\begin{frame}{Stage 3 Balanced V1 Checkpoint Selection}
+\begin{frame}{Training Reward Curves from SwanLab}
 \begin{figure}
 \centering
-\includegraphics[width=0.86\linewidth]{assets/stage3_v1_eval.png}
+\includegraphics[width=0.88\linewidth]{assets/swanlab_reward_curve.png}
 \end{figure}
 \small
-Final checkpoint was selected over step 80: it recovered legal-deal rate and
-kept buyer/seller raw rewards reasonably close.
+V1 has the strongest eval reward curve among the three Stage 3 variants.
+V2/V3 add more behavior guardrails, but the reward signal becomes harder to
+optimize and the final policy is less stable.
 \end{frame}
 
-\begin{frame}{Rollout Comparison on 50 Validation Scenarios}
+\begin{frame}{V1 / V2 / V3 Ablation: Final Policies}
 \begin{figure}
 \centering
-\includegraphics[width=0.86\linewidth]{assets/rollout_compare.png}
+\includegraphics[width=0.88\linewidth]{assets/v123_ablation_final.png}
 \end{figure}
 \small
-V1 final remained the best presentation checkpoint: 86\% deal rate, 0\%
-format error, 2\% buyer violation, and 8\% seller violation.
+Final rollout comparison shows the trade-off clearly: V1 gives the best deal
+rate and reward; V2/V3 guardrails reduce some qualitative risks but introduce
+more failed or violating outcomes.
 \end{frame}
 
-\begin{frame}{Selected V1 Demo Rollout}
-\begin{itemize}
-    \item Scenario: AirPods Pro 2; buyer budget 1412; seller cost 1034.
-    \item Deal price: 1220.
-    \item Surplus split: buyer 50.8\%, seller 49.2\%.
-    \item Rewards: buyer 56.9, seller 56.0.
-\end{itemize}
+\begin{frame}{Trace: A Balanced V1 Rollout}
 \begin{figure}
 \centering
-\includegraphics[width=0.72\linewidth]{assets/selected_surplus.png}
+\includegraphics[width=0.88\linewidth]{assets/v1_trace_price_path.png}
 \end{figure}
+\small
+Scenario: AirPods Pro 2. Buyer budget is 1412, seller cost is 1034, and the
+deal closes at 1220. The surplus split is buyer 50.8\% and seller 49.2\%.
 \end{frame}
 
-\begin{frame}{Demo Dialogue: V1 Rollout Index 47}
+\begin{frame}{Trace Dialogue: V1 Rollout Index 47}
 \small
 \begin{tabular}{@{}p{0.16\linewidth}p{0.76\linewidth}@{}}
 \toprule
@@ -271,7 +270,7 @@ Seller & \texttt{<deal>1220</deal>}\\
 \vspace{0.15cm}
 \small
 This example was selected because both roles receive positive and nearly equal
-reward, making it clearer than one-sided samples.
+reward: buyer 56.9 and seller 56.0.
 \end{frame}
 
 \section{Lessons}
