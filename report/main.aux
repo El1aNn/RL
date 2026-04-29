@@ -1,0 +1,60 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shaobing2024deepseekmath}
+\citation{qwen2025technicalreport,hu2022lora}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Problem Formulation}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Task Definition}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Why RL Is Appropriate}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Scenario Difficulty}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Rule-generated RL scenario distribution.}}{2}{table.1}\protected@file@percent }
+\newlabel{tab:data-distribution}{{1}{2}{Rule-generated RL scenario distribution}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}From SFT to Online GRPO}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Role-Specific Adapters}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Reward Design}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Three-Stage Curriculum}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Training stages and representative hyperparameters.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:training-stages}{{2}{4}{Training stages and representative hyperparameters}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Implementation Details}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Evaluation Questions}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Metrics}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Ablations}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Choosing the Seller for Buyer Retraining}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Stage-2 seller checkpoint comparison against the same frozen buyer.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:seller-ckpt}{{3}{5}{Stage-2 seller checkpoint comparison against the same frozen buyer}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Stage-3 Training Behavior}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces SwanLab evaluation reward curves for the three stage-3 variants. V1 converges most cleanly; V2 and V3 are less stable under stronger constraints.}}{6}{figure.1}\protected@file@percent }
+\newlabel{fig:reward-curves}{{1}{6}{SwanLab evaluation reward curves for the three stage-3 variants. V1 converges most cleanly; V2 and V3 are less stable under stronger constraints}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Stage-3 dynamics from SwanLab. Heavier guardrails lead to longer dialogues, but they do not recover V1's deal rate or low seller-violation behavior.}}{6}{figure.2}\protected@file@percent }
+\newlabel{fig:stage3-dynamics}{{2}{6}{Stage-3 dynamics from SwanLab. Heavier guardrails lead to longer dialogues, but they do not recover V1's deal rate or low seller-violation behavior}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Balance diagnostics from SwanLab. V1 narrows the buyer-seller reward gap while keeping seller reward above zero; V2 and V3 often push seller reward to zero or below.}}{7}{figure.3}\protected@file@percent }
+\newlabel{fig:stage3-balance}{{3}{7}{Balance diagnostics from SwanLab. V1 narrows the buyer-seller reward gap while keeping seller reward above zero; V2 and V3 often push seller reward to zero or below}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Final Policy Comparison}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Final policy ablation over 15 held-out scenarios.}}{7}{table.4}\protected@file@percent }
+\newlabel{tab:v123-final}{{4}{7}{Final policy ablation over 15 held-out scenarios}{table.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Visual comparison of V1, V2, and V3 final policies. The heavier the guardrails, the lower the final deal quality in our runs.}}{7}{figure.4}\protected@file@percent }
+\newlabel{fig:v123-ablation}{{4}{7}{Visual comparison of V1, V2, and V3 final policies. The heavier the guardrails, the lower the final deal quality in our runs}{figure.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Larger rollout comparison on 50 validation scenarios.}}{8}{table.5}\protected@file@percent }
+\newlabel{tab:larger-ablation}{{5}{8}{Larger rollout comparison on 50 validation scenarios}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Qualitative Example}{8}{subsection.5.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces A balanced V1 rollout. The final price is between the private thresholds and gives positive surplus to both sides.}}{8}{figure.5}\protected@file@percent }
+\newlabel{fig:v1-trace}{{5}{8}{A balanced V1 rollout. The final price is between the private thresholds and gives positive surplus to both sides}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Negative Results and Failure Analysis}{8}{subsection.5.5}\protected@file@percent }
+\citation{schulman2017ppo}
+\bibstyle{plainnat}
+\bibdata{references}
+\bibcite{hu2022lora}{{1}{2022}{{Hu et~al.}}{{Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and Chen}}}
+\bibcite{schulman2017ppo}{{2}{2017}{{Schulman et~al.}}{{Schulman, Wolski, Dhariwal, Radford, and Klimov}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Novelty}{9}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Limitations}{9}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Future Work}{9}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\bibcite{shaobing2024deepseekmath}{{3}{2024}{{Shao et~al.}}{{Shao, Wang, Zhu, et~al.}}}
+\bibcite{qwen2025technicalreport}{{4}{2025}{{Team}}{{}}}
+\gdef \@abspage@last{10}
